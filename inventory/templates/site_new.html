@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}New Site{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2 class="mb-0"><i class="bi bi-plus-circle me-2"></i>New Site</h2>
+  <small class="text-muted">Register a new traffic management site</small>
+</div>
+
+<div class="row">
+  <div class="col-lg-5">
+    <div class="card">
+      <div class="card-header" style="background-color: var(--tm-dark); color: #fff;">
+        Site Details
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ url_for('site_new') }}">
+          <div class="mb-3">
+            <label for="name" class="form-label fw-semibold">Site Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name"
+                   placeholder="e.g. A406 North Circular Roadworks" required autofocus>
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label fw-semibold">Location</label>
+            <input type="text" class="form-control" id="location" name="location"
+                   placeholder="e.g. North Circular Road, London">
+          </div>
+
+          <div class="mb-4">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="active" name="active"
+                     checked role="switch">
+              <label class="form-check-label fw-semibold" for="active">Active Site</label>
+              <div class="form-text">Inactive sites are hidden from stock removal dropdowns.</div>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-check-lg me-1"></i>Create Site
+            </button>
+            <a href="{{ url_for('sites_list') }}" class="btn btn-outline-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

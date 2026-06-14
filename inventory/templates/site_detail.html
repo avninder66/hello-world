@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}{{ site['name'] }}{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-start flex-wrap gap-2">
+  <div>
+    <h2 class="mb-0">
+      <i class="bi bi-geo-alt me-2 text-danger"></i>{{ site['name'] }}
+      {% if not site['active'] %}
+        <span class="badge bg-secondary ms-2" style="font-size: 0.55em; vertical-align: middle;">Inactive</span>
+      {% else %}
+        <span class="badge bg-success ms-2" style="font-size: 0.55em; vertical-align: middle;">Active</span>
+      {% endif %}
+    </h2>
+    {% if site['location'] %}
+      <small class="text-muted"><i class="bi bi-pin-map me-1"></i>{{ site['location'] }}</small>
+    {% endif %}
+  </div>
+  <a href="{{ url_for('sites_list') }}" class="btn btn-sm btn-outline-secondary">
+    <i class="bi bi-arrow-left me-1"></i>All Sites
+  </a>
+</div>
+
+<!-- Stock at this site -->
+<div class="card">
+  <div class="card-header d-flex align-items-center" style="background-color: var(--tm-dark); color: #fff;">
+    <i class="bi bi-boxes me-2"></i>Stock Currently at This Site
+    <span class="ms-auto badge bg-secondary">{{ items|length }} item{% if items|length != 1 %}s{% endif %}</span>
+  </div>
+  <div class="card-body p-0">
+    {% if items %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Stock Item</th>
+            <th>Unit</th>
+            <th class="text-end">Qty at Site</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td class="fw-semibold">
+              <i class="bi bi-box me-1 text-muted"></i>{{ item['name'] }}
+            </td>
+            <td class="text-muted">{{ item['unit'] }}</td>
+            <td class="text-end fw-bold text-danger">{{ item['qty_at_site'] }}</td>
+            <td class="text-end">
+              <a href="{{ url_for('item_detail', item_id=item['id']) }}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-card-list me-1"></i>Ledger
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr class="table-light fw-bold">
+            <td colspan="2" class="text-end">Total units at site:</td>
+            <td class="text-end text-danger">
+              {{ items | sum(attribute='qty_at_site') }}
+            </td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    {% else %}
+    <div class="text-center py-5 text-muted">
+      <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+      No stock has been allocated to this site yet.
+      <br>
+      <a href="{{ url_for('items_list') }}">Go to Stock Items</a> and use
+      "Remove to Site" to allocate stock here.
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2 class="mb-0"><i class="bi bi-speedometer2 me-2"></i>Dashboard</h2>
+  <small class="text-muted">Stock snapshot &amp; alerts</small>
+</div>
+
+<!-- Summary cards -->
+<div class="row g-3 mb-4">
+  <div class="col-sm-4">
+    <div class="card summary-card h-100">
+      <div class="card-body d-flex align-items-center gap-3">
+        <div class="icon-circle bg-primary bg-opacity-10">
+          <i class="bi bi-box-seam" style="color: var(--tm-orange)"></i>
+        </div>
+        <div>
+          <div class="text-muted small">Total Stock Items</div>
+          <div class="display-5">{{ total_items }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card summary-card h-100">
+      <div class="card-body d-flex align-items-center gap-3">
+        <div class="icon-circle {% if low_stock_count > 0 %}bg-danger bg-opacity-10{% else %}bg-success bg-opacity-10{% endif %}">
+          <i class="bi bi-exclamation-triangle {% if low_stock_count > 0 %}text-danger{% else %}text-success{% endif %}"></i>
+        </div>
+        <div>
+          <div class="text-muted small">Low Stock Items</div>
+          <div class="display-5 {% if low_stock_count > 0 %}text-danger{% endif %}">{{ low_stock_count }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card summary-card h-100">
+      <div class="card-body d-flex align-items-center gap-3">
+        <div class="icon-circle bg-info bg-opacity-10">
+          <i class="bi bi-geo-alt text-info"></i>
+        </div>
+        <div>
+          <div class="text-muted small">Active Sites</div>
+          <div class="display-5">{{ active_sites_count }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Low-stock alert banner -->
+{% if low_stock_count > 0 %}
+<div class="alert alert-danger d-flex align-items-center mb-4" role="alert">
+  <i class="bi bi-exclamation-triangle-fill me-2 fs-5"></i>
+  <div>
+    <strong>{{ low_stock_count }} item{% if low_stock_count != 1 %}s{% endif %} below threshold.</strong>
+    Review the table below and reorder as needed.
+  </div>
+</div>
+{% endif %}
+
+<!-- Stock table -->
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center" style="background-color: var(--tm-dark); color: #fff;">
+    <span><i class="bi bi-table me-2"></i>Current Stock Levels</span>
+    <a href="{{ url_for('item_new') }}" class="btn btn-sm btn-warning">
+      <i class="bi bi-plus-lg me-1"></i>Add Item
+    </a>
+  </div>
+  <div class="card-body p-0">
+    {% if items %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Item Name</th>
+            <th>Unit</th>
+            <th class="text-end">Current Stock</th>
+            <th class="text-end">Threshold</th>
+            <th class="text-center">Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr class="{% if item.is_low %}table-danger{% endif %}">
+            <td class="fw-semibold">
+              <i class="bi bi-box me-1 text-muted"></i>{{ item.name }}
+            </td>
+            <td class="text-muted">{{ item.unit }}</td>
+            <td class="text-end fw-bold {% if item.is_low %}text-danger{% endif %}">
+              {{ item.current_stock }}
+            </td>
+            <td class="text-end text-muted">{{ item.low_stock_threshold }}</td>
+            <td class="text-center">
+              {% if item.is_low %}
+                <span class="badge bg-danger"><i class="bi bi-exclamation-triangle me-1"></i>Low Stock</span>
+              {% else %}
+                <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>OK</span>
+              {% endif %}
+            </td>
+            <td class="text-end">
+              <a href="{{ url_for('item_detail', item_id=item.id) }}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-card-list me-1"></i>Ledger
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="text-center py-5 text-muted">
+      <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+      No stock items yet.
+      <a href="{{ url_for('item_new') }}">Add your first item</a>.
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

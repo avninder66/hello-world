@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Remove Stock — {{ item['name'] }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2 class="mb-0"><i class="bi bi-dash-circle me-2 text-danger"></i>Remove to Site</h2>
+  <small class="text-muted">Record a stock removal for <strong>{{ item['name'] }}</strong></small>
+</div>
+
+<div class="row">
+  <div class="col-lg-5">
+    <div class="card border-danger">
+      <div class="card-header bg-danger text-white">
+        <i class="bi bi-box-arrow-up me-2"></i>Stock Removal — {{ item['name'] }}
+      </div>
+      <div class="card-body">
+        {% if not sites %}
+        <div class="alert alert-warning">
+          <i class="bi bi-exclamation-triangle me-2"></i>
+          No active sites available.
+          <a href="{{ url_for('site_new') }}" class="alert-link">Create a site first</a>.
+        </div>
+        {% else %}
+        <form method="POST" action="{{ url_for('item_remove_stock', item_id=item['id']) }}">
+          <div class="mb-3">
+            <label for="site_id" class="form-label fw-semibold">
+              Site <span class="text-danger">*</span>
+            </label>
+            <select class="form-select" id="site_id" name="site_id" required>
+              <option value="">— Select a site —</option>
+              {% for site in sites %}
+              <option value="{{ site['id'] }}">{{ site['name'] }}{% if site['location'] %} ({{ site['location'] }}){% endif %}</option>
+              {% endfor %}
+            </select>
+            <div class="form-text">
+              Site not listed? <a href="{{ url_for('site_new') }}">Add a new site</a>.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="quantity" class="form-label fw-semibold">
+              Quantity ({{ item['unit'] }}) <span class="text-danger">*</span>
+            </label>
+            <input type="number" class="form-control form-control-lg" id="quantity"
+                   name="quantity" min="1" required autofocus placeholder="0">
+          </div>
+
+          <div class="mb-3">
+            <label for="date" class="form-label fw-semibold">Date <span class="text-danger">*</span></label>
+            <input type="date" class="form-control" id="date" name="date" value="{{ today }}" required>
+          </div>
+
+          <div class="mb-4">
+            <label for="notes" class="form-label fw-semibold">Notes</label>
+            <input type="text" class="form-control" id="notes" name="notes"
+                   placeholder="e.g. Deployed for lane closure setup">
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-danger">
+              <i class="bi bi-check-lg me-1"></i>Record Removal
+            </button>
+            <a href="{{ url_for('item_detail', item_id=item['id']) }}" class="btn btn-outline-secondary">
+              <i class="bi bi-arrow-left me-1"></i>Back to Ledger
+            </a>
+          </div>
+        </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4 mt-3 mt-lg-0">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h6 class="text-muted mb-3"><i class="bi bi-info-circle me-1"></i>Current Status</h6>
+        <table class="table table-sm table-borderless mb-0">
+          <tr>
+            <td class="text-muted">Item:</td>
+            <td class="fw-semibold">{{ item['name'] }}</td>
+          </tr>
+          <tr>
+            <td class="text-muted">Unit:</td>
+            <td>{{ item['unit'] }}</td>
+          </tr>
+          <tr>
+            <td class="text-muted">Threshold:</td>
+            <td>{{ item['low_stock_threshold'] }}</td>
+          </tr>
+        </table>
+        <div class="alert alert-info mt-3 mb-0 py-2 small">
+          <i class="bi bi-lightbulb me-1"></i>
+          Removal quantities are tracked per site so you can see exactly what's deployed where.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
