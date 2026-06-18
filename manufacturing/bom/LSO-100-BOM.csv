@@ -1,0 +1,22 @@
+Item,Ref_Des,Qty,Description,Value,Manufacturer,MPN,Mouser_PN,Package,Notes
+1,U1-U6,6,Dual-Channel Smart High-Side Power Switch,36V 21A peak SPI diagnostics,Infineon Technologies,BTS7030-2EPA,726-BTS7030-2EPA,PG-DSO-14-27,6 devices providing 12 independently controlled output channels for signal lamps
+2,U7-U10,4,12-bit I2C Bidirectional Current/Power Monitor,±32V,Texas Instruments,INA219BIDCNT,595-INA219BIDCNT,SOT-23-8,4 devices monitoring grouped lamp channels for open/short circuit detection
+3,U11,1,Quad-Channel Digital Isolator,150Mbps 5kVrms,Texas Instruments,ISO7041FDWR,595-ISO7041FDWR,SOIC-16,SPI and inhibit signal isolation between LCU and output stage
+4,U12,1,500mA Adjustable Current Limit USB Power Switch,500mA,Texas Instruments,TPS2553DRVR,595-TPS2553DRVR,WSON-6,Wait lamp and auxiliary 5V controlled output
+5,U13,1,Optocoupler Gate Drive 2.5A Output,2.5A Output,Broadcom/Avago,HCPL-314J-500E,630-HCPL-314J-500E,DIP-8,Hardware inhibit relay drive with galvanic isolation
+6,D1-D12,12,TVS Diode Bidirectional Transient Suppressor,12V 600W Bidirectional,Vishay,SMBJ12CA-E3/52,625-SMBJ12CA-E3/52,SMB,Bidirectional TVS clamp on each output channel - lamp load transient protection
+7,D13-D18,6,Schottky Rectifier Freewheeling Diode,5A 40V,ON Semiconductor,SS54,863-SS54,SMA,Freewheeling diodes for inductive lamp loads
+8,Q1,1,Dual P-Channel MOSFET Ideal Diode ORing,30V 6.5A,Vishay Siliconix,SI7288DP-T1-GE3,78-SI7288DP-T1-GE3,PowerPAK SO-8,Ideal diode ORing for supply redundancy/reverse polarity protection
+9,F1,1,Automotive ATO Blade Fuse Holder with 30A Fuse,30A,Littelfuse,15530030H,576-15530030H,ATO Blade,Main board supply fuse and holder
+10,J1,1,MiniFit Jr 6-pin Vertical Header,4.2mm pitch,Molex,39-30-0060,538-39-30-0060,MiniFit Jr 4.2mm,Power input from LPB-100 (12V and GND)
+11,J2,1,M12 6-pin A-coded Male Panel Mount,,Phoenix Contact,1441831,651-1441831,M12-6P,CAN/RS485 and hardware inhibit input from LCU-100
+12,J3,1,Superseal 9-pin Plug Connector,,TE Connectivity,1-967616-1,571-1-967616-1,Superseal 9P,Approach A vehicle signal head output connector
+13,J4,1,Superseal 9-pin Plug Connector,,TE Connectivity,1-967616-1,571-1-967616-1,Superseal 9P,Approach B vehicle signal head output connector
+14,J5,1,Superseal 9-pin Plug Connector,,TE Connectivity,1-967616-1,571-1-967616-1,Superseal 9P,Approach C vehicle signal head output connector
+15,J6,1,Superseal 9-pin Plug Connector,,TE Connectivity,1-967616-1,571-1-967616-1,Superseal 9P,Approach D vehicle signal head output connector
+16,J7,1,Superseal 8-pin Plug Connector,,TE Connectivity,1-967615-1,571-1-967615-1,Superseal 8P,Pedestrian signal head output connector
+17,C1-C50,50,Bypass Capacitor,100nF 0402 X5R 25V,Murata,GRM155R61E104KA87D,81-GRM155R61E104KA87D,0402,General bypass decoupling all ICs
+18,C51-C70,20,Bulk Bypass Capacitor,10µF 1210 50V X5R,Murata,GRM32ER61H106KA12L,81-GRM32ER61H106KA12L,1210,Output supply rail bulk bypass - rated 50V for output rail
+19,R1-R30,30,Pull-up/Pull-down Resistor,10kΩ 0402 1% 62.5mW,Yageo,RC0402FR-0710KL,603-RC0402FR-0710KL,0402,Pull-up/pull-down for SPI CS lines and enable signals
+20,R31-R34,4,Current Sense Shunt Resistor,100mΩ 1% 1W Wirewound Kelvin sense,Vishay,WSBS2512R1000FEA,71-WSBS2512R1000FEA,WSBS2512,Current sense shunt resistors for INA219 inputs - Kelvin sense 4-terminal
+21,R51-R70,20,Resistor,100Ω 0402 1% 62.5mW,Yageo,RC0402FR-07100RL,603-RC0402FR-07100RL,0402,LED driver and gate resistors

@@ -1,0 +1,1133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  KiCad XML Netlist Format (compatible with KiCad 7.0 / pcbnew import)
+  ======================================================================
+  Document   : LCU-100-SCH-001
+  Title      : Lumina LCU-100 Control Unit — Full Board Netlist
+  Revision   : A
+  Date       : 2026-06-18
+  Author     : Lumina Engineering
+  Tool       : KiCad 7.0 (EESchema netlist export)
+
+  Notes:
+  - This netlist represents all key nets and components on the LCU-100
+    as defined in LUM-ARCH-ELEC-001 Rev A.
+  - Passive component values are per the architecture document.
+  - Pin numbers follow datasheet reference for each component.
+  - Power symbols (VCC_12V, VCC_5V, VCC_3V3, GND, etc.) are shown
+    as net drivers with no physical footprint.
+  ======================================================================
+-->
+<export version="E">
+
+  <!-- ==================================================================
+       DESIGN METADATA
+       ================================================================== -->
+  <design>
+    <source>LCU-100-SCH-001</source>
+    <date>2026-06-18</date>
+    <tool>Lumina Engineering / KiCad 7.0</tool>
+    <sheet number="1" name="LCU-100 Top Level">
+      <title_block>
+        <title>Lumina LCU-100 Control Unit</title>
+        <company>Lumina Engineering Ltd</company>
+        <rev>A</rev>
+        <date>2026-06-18</date>
+        <source>LCU-100-SCH-001</source>
+        <comment number="1" value="STM32H743ZIT6 Main Controller + STM32G071RBT6 Safety Supervisor"/>
+        <comment number="2" value="160 x 100 mm, 4-layer FR4"/>
+        <comment number="3" value="See LUM-ARCH-ELEC-001 for full design rationale"/>
+      </title_block>
+    </sheet>
+  </design>
+
+  <!-- ==================================================================
+       COMPONENT LIST
+       ================================================================== -->
+  <components>
+
+    <!-- ----------------------------------------------------------------
+         U1 — STM32H743ZIT6 Main MCU
+         ---------------------------------------------------------------- -->
+    <comp ref="U1">
+      <value>STM32H743ZIT6</value>
+      <footprint>Package_QFP:LQFP-144_20x20mm_P0.5mm</footprint>
+      <description>ARM Cortex-M7 MCU, 400MHz, 2MB Flash, 1MB RAM, LQFP-144</description>
+      <fields>
+        <field name="Manufacturer">STMicroelectronics</field>
+        <field name="MPN">STM32H743ZIT6</field>
+        <field name="Datasheet">https://www.st.com/resource/en/datasheet/stm32h743zi.pdf</field>
+        <field name="Supplier">Farnell</field>
+        <field name="Supplier_PN">3123256</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U2 — STM32G071RBT6 Safety Supervisor MCU
+         ---------------------------------------------------------------- -->
+    <comp ref="U2">
+      <value>STM32G071RBT6</value>
+      <footprint>Package_QFP:LQFP-64_10x10mm_P0.5mm</footprint>
+      <description>ARM Cortex-M0+ Safety Supervisor MCU, 64MHz, 128KB Flash, 36KB RAM, LQFP-64</description>
+      <fields>
+        <field name="Manufacturer">STMicroelectronics</field>
+        <field name="MPN">STM32G071RBT6</field>
+        <field name="Datasheet">https://www.st.com/resource/en/datasheet/stm32g071rb.pdf</field>
+        <field name="Supplier">Farnell</field>
+        <field name="Supplier_PN">3330753</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U3 — MB85RS4MT FRAM, 4Mbit SPI
+         ---------------------------------------------------------------- -->
+    <comp ref="U3">
+      <value>MB85RS4MT</value>
+      <footprint>Package_SO:SOP-8_3.9x4.9mm_P1.27mm</footprint>
+      <description>4Mbit SPI FRAM, 3.3V, 40MHz, SOP-8</description>
+      <fields>
+        <field name="Manufacturer">Fujitsu / Infineon</field>
+        <field name="MPN">MB85RS4MT</field>
+        <field name="Datasheet">https://www.infineon.com/dgdl/Infineon-MB85RS4MT-DataSheet-v05_00-EN.pdf</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U4 — MCP7940N RTC
+         ---------------------------------------------------------------- -->
+    <comp ref="U4">
+      <value>MCP7940N-I/SN</value>
+      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <description>Real-Time Clock with SRAM, I2C, SOIC-8</description>
+      <fields>
+        <field name="Manufacturer">Microchip Technology</field>
+        <field name="MPN">MCP7940N-I/SN</field>
+        <field name="I2C_Addr">0x6F</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U5 — TCAN1042VDRQ1 CAN FD Transceiver (CAN1, main bus)
+         ---------------------------------------------------------------- -->
+    <comp ref="U5">
+      <value>TCAN1042VDRQ1</value>
+      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <description>CAN FD Transceiver, ISO 11898-2, 5V, SOIC-8, AEC-Q100</description>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">TCAN1042VDRQ1</field>
+        <field name="Bus">CAN1 — Main Board CAN FD Bus (FDCAN1 of U1)</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U6 — TCAN1042VDRQ1 CAN FD Transceiver (CAN2, supervisor channel)
+         ---------------------------------------------------------------- -->
+    <comp ref="U6">
+      <value>TCAN1042VDRQ1</value>
+      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <description>CAN FD Transceiver, ISO 11898-2, 5V, SOIC-8, AEC-Q100</description>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">TCAN1042VDRQ1</field>
+        <field name="Bus">CAN2 — Private supervisor channel (FDCAN1 of U2 / FDCAN2 of U1)</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U7 — MAX3485EESA+ RS-485 Transceiver
+         ---------------------------------------------------------------- -->
+    <comp ref="U7">
+      <value>MAX3485EESA+</value>
+      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <description>RS-485/RS-422 Transceiver, 3.3V, Half-Duplex, ±15kV ESD, SOIC-8</description>
+      <fields>
+        <field name="Manufacturer">Maxim Integrated (Analog Devices)</field>
+        <field name="MPN">MAX3485EESA+</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U8 — RECOM R05P05D/P Isolated DC-DC (5V CAN supply)
+         ---------------------------------------------------------------- -->
+    <comp ref="U8">
+      <value>R05P05D/P</value>
+      <footprint>Converter_DCDC:Converter_DCDC_RECOM_R-78E-0.5_THT_P5.08mm</footprint>
+      <description>1W Isolated DC-DC Converter, 5V in, +/-5V out, SIP-7</description>
+      <fields>
+        <field name="Manufacturer">RECOM Power</field>
+        <field name="MPN">R05P05D/P</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U9 — TPS7A4700RGWT 5V LDO Regulator (main logic)
+         ---------------------------------------------------------------- -->
+    <comp ref="U9">
+      <value>TPS7A4700RGWT</value>
+      <footprint>Package_DFN_QFN:VQFN-20-1EP_4x4mm_P0.65mm_EP2.4x2.4mm</footprint>
+      <description>36V, 1A Ultra-Low-Noise LDO Regulator, VQFN-20</description>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">TPS7A4700RGWT</field>
+        <field name="Vout">5.0V</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U10 — AP2114HA-3.3TRG1 3.3V LDO Regulator (main MCU 3V3)
+         ---------------------------------------------------------------- -->
+    <comp ref="U10">
+      <value>AP2114HA-3.3TRG1</value>
+      <footprint>Package_TO_SOT_SMD:SOT-223-3_TabPin2</footprint>
+      <description>800mA LDO Regulator, 3.3V, SOT-223</description>
+      <fields>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">AP2114HA-3.3TRG1</field>
+        <field name="Vout">3.3V (main MCU rail)</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U11 — AP2114HA-3.3TRG1 3.3V LDO Regulator (supervisor MCU independent rail)
+         ---------------------------------------------------------------- -->
+    <comp ref="U11">
+      <value>AP2114HA-3.3TRG1</value>
+      <footprint>Package_TO_SOT_SMD:SOT-223-3_TabPin2</footprint>
+      <description>800mA LDO Regulator, 3.3V, SOT-223 — independent supervisor 3V3 rail</description>
+      <fields>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">AP2114HA-3.3TRG1</field>
+        <field name="Vout">3.3V (supervisor independent rail)</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U12 — MCP809T-315I/TT 3.15V Voltage Supervisor (3V3 rail monitor)
+         ---------------------------------------------------------------- -->
+    <comp ref="U12">
+      <value>MCP809T-315I/TT</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <description>3.15V Threshold Reset Supervisor, Active-Low Open-Drain, SOT-23-3</description>
+      <fields>
+        <field name="Manufacturer">Microchip Technology</field>
+        <field name="MPN">MCP809T-315I/TT</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U13 — MCP809T-460I/TT 4.6V Voltage Supervisor (5V rail monitor)
+         ---------------------------------------------------------------- -->
+    <comp ref="U13">
+      <value>MCP809T-460I/TT</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <description>4.60V Threshold Reset Supervisor, Active-Low Open-Drain, SOT-23-3</description>
+      <fields>
+        <field name="Manufacturer">Microchip Technology</field>
+        <field name="MPN">MCP809T-460I/TT</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U14 — SAM-M10Q GNSS Module
+         ---------------------------------------------------------------- -->
+    <comp ref="U14">
+      <value>SAM-M10Q-00B-00</value>
+      <footprint>RF_Module:u-blox_SAM-M10Q</footprint>
+      <description>u-blox SAM-M10Q Multi-band GNSS Module, GPS/GLONASS/Galileo/BeiDou, LCC-16</description>
+      <fields>
+        <field name="Manufacturer">u-blox AG</field>
+        <field name="MPN">SAM-M10Q-00B-00</field>
+        <field name="Interface">SPI2 primary, I2C secondary</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U15 — PRTR5V0U2X Dual ESD Protection (USB D+/D-)
+         ---------------------------------------------------------------- -->
+    <comp ref="U15">
+      <value>PRTR5V0U2X</value>
+      <footprint>Package_TO_SOT_SMD:SOT-363_SC-70-6</footprint>
+      <description>Dual ESD Protection Array, ±15kV IEC61000-4-2, &lt;0.5pF, SOT-363</description>
+      <fields>
+        <field name="Manufacturer">Nexperia</field>
+        <field name="MPN">PRTR5V0U2X</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U16 — ADP1714AUJZ-1.8 1.8V LDO (GNSS Vcore supply)
+         ---------------------------------------------------------------- -->
+    <comp ref="U16">
+      <value>ADP1714AUJZ-1.8-R7</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23-5</footprint>
+      <description>300mA LDO Regulator, 1.8V fixed, SOT-23-5</description>
+      <fields>
+        <field name="Manufacturer">Analog Devices</field>
+        <field name="MPN">ADP1714AUJZ-1.8-R7</field>
+        <field name="Vout">1.8V (GNSS SAM-M10Q Vcore)</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U17 — LP38693MP-3.8 LTE Modem 3.8V LDO
+         ---------------------------------------------------------------- -->
+    <comp ref="U17">
+      <value>LP38693MP-3.8</value>
+      <footprint>Package_TO_SOT_SMD:SOT-223-3_TabPin2</footprint>
+      <description>500mA LDO Regulator, 3.8V fixed, SOT-223</description>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">LP38693MP-3.8/NOPB</field>
+        <field name="Vout">3.8V (Quectel EC21 modem supply)</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J1 — 12V Power Input Connector
+         ---------------------------------------------------------------- -->
+    <comp ref="J1">
+      <value>PWR-IN-12V</value>
+      <footprint>Connector_Molex:Molex_Micro-Fit_3.0_43045-0200_1x02_P3.0mm_Vertical</footprint>
+      <description>12V Power Input, 2-pin Molex Micro-Fit 3.0, 5A rated</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J2 — CAN FD Board Bus Connector (inter-board CAN FD)
+         ---------------------------------------------------------------- -->
+    <comp ref="J2">
+      <value>CAN-FD-BUS</value>
+      <footprint>Connector_Molex:Molex_Micro-Fit_3.0_43045-0400_1x04_P3.0mm_Vertical</footprint>
+      <description>CAN FD Bus Connector, 4-pin (CAN_H, CAN_L, CAN_GND, CAN_SHLD)</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J3 — USB-C Service Port
+         ---------------------------------------------------------------- -->
+    <comp ref="J3">
+      <value>USB-C-Service</value>
+      <footprint>Connector_USB:USB_C_Receptacle_GCT_USB4135_Vertical</footprint>
+      <description>USB-C Receptacle, Service Port, 5V/0.9A PD</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J4 — RS-485 Field Connector to LPI-100
+         ---------------------------------------------------------------- -->
+    <comp ref="J4">
+      <value>RS485-FIELD</value>
+      <footprint>Connector_Phoenix:PhoenixContact_MC_1,5_3-G-3,81_1x03_P3.81mm_Horizontal</footprint>
+      <description>RS-485 Field Bus Terminal Block, 3-pin (A, B, GND)</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J5 — SWD Debug Header (10-pin Cortex)
+         ---------------------------------------------------------------- -->
+    <comp ref="J5">
+      <value>SWD-DEBUG</value>
+      <footprint>Connector_PinHeader_1.27mm:PinHeader_2x05_P1.27mm_Vertical</footprint>
+      <description>10-pin ARM Cortex SWD+SWO Debug Header, 1.27mm pitch</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J6 — M.2 B-key Socket for LTE Modem (Quectel EC21)
+         ---------------------------------------------------------------- -->
+    <comp ref="J6">
+      <value>M2-B-KEY-3042</value>
+      <footprint>Connector_M.2:M.2_Connector_Upright_67pin_B-Key_3042</footprint>
+      <description>M.2 B-Key Socket, 67-pin, 3042 form factor (Quectel EC21)</description>
+      <fields>
+        <field name="Manufacturer">TE Connectivity</field>
+        <field name="MPN">2199230-4</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J7 — LTE Antenna SMA Connector
+         ---------------------------------------------------------------- -->
+    <comp ref="J7">
+      <value>SMA-LTE-ANT</value>
+      <footprint>Connector_Coaxial:SMA_Amphenol_132289_EdgeMount</footprint>
+      <description>SMA Edge-Mount Connector, 50 Ohm, LTE Antenna Port</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J8 — GNSS Antenna SMA Connector
+         ---------------------------------------------------------------- -->
+    <comp ref="J8">
+      <value>SMA-GNSS-ANT</value>
+      <footprint>Connector_Coaxial:SMA_Amphenol_132289_EdgeMount</footprint>
+      <description>SMA Edge-Mount Connector, 50 Ohm, GNSS Active Antenna Port</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J9 — SIM Card Holder (Nano-SIM for LTE modem)
+         ---------------------------------------------------------------- -->
+    <comp ref="J9">
+      <value>NANO-SIM</value>
+      <footprint>Connector_Card:Nano-SIM_Molex_1050270001_Horizontal</footprint>
+      <description>Nano-SIM Card Holder, Push-Push, SMD</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J10 — INHIBIT Output Connector (to LSO-100 boards)
+         ---------------------------------------------------------------- -->
+    <comp ref="J10">
+      <value>INHIBIT-OUT</value>
+      <footprint>Connector_Molex:Molex_Micro-Fit_3.0_43045-0200_1x02_P3.0mm_Vertical</footprint>
+      <description>Hardware INHIBIT Output to LSO-100, 2-pin (INHIBIT_N, GND)</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         BT1 — RTC Backup Battery (ML2032 coin cell)
+         ---------------------------------------------------------------- -->
+    <comp ref="BT1">
+      <value>ML2032</value>
+      <footprint>Battery:BatteryHolder_Keystone_106_3V_1CR2032_SMD</footprint>
+      <description>Lithium Coin Cell Holder, ML2032, 3V, 65mAh — RTC backup</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         X1 — 25 MHz HSE Crystal for STM32H743
+         ---------------------------------------------------------------- -->
+    <comp ref="X1">
+      <value>ABLS-25.000MHZ-B4-T</value>
+      <footprint>Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm</footprint>
+      <description>25.000 MHz Crystal, ±30ppm, 18pF load, SMD 3225</description>
+      <fields>
+        <field name="Manufacturer">Abracon</field>
+        <field name="MPN">ABLS-25.000MHZ-B4-T</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         X2 — 32.768 kHz RTC Crystal for MCP7940N
+         ---------------------------------------------------------------- -->
+    <comp ref="X2">
+      <value>ABS07-32.768kHz-7-T</value>
+      <footprint>Crystal:Crystal_SMD_2012-2Pin_2.0x1.2mm</footprint>
+      <description>32.768 kHz Crystal, ±20ppm, 7pF load, MSOP-2</description>
+      <fields>
+        <field name="Manufacturer">Abracon</field>
+        <field name="MPN">ABS07-32.768kHz-7-T</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         D1 — 1N4148WS Schottky Diode (RTC backup cell isolation)
+         ---------------------------------------------------------------- -->
+    <comp ref="D1">
+      <value>1N4148WS</value>
+      <footprint>Diode_SMD:D_SOD-323</footprint>
+      <description>Small Signal Switching Diode, 75V, 150mA, SOD-323</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         D2 — PESD2CAN TVS Array (RS-485 bus ESD protection)
+         ---------------------------------------------------------------- -->
+    <comp ref="D2">
+      <value>PESD2CAN</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <description>Dual ESD Protection Diode for CAN/RS-485, 6V clamp, SOT-23</description>
+      <fields>
+        <field name="Manufacturer">Nexperia</field>
+        <field name="MPN">PESD2CAN</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         FL1 — WURTH 744231220 CAN Common-Mode Choke (CAN1)
+         ---------------------------------------------------------------- -->
+    <comp ref="FL1">
+      <value>744231220</value>
+      <footprint>Inductor_SMD:L_Bourns-SRR1260</footprint>
+      <description>Common-Mode Choke, 2x22uH, 200mA, CAN FD line filter (CAN1)</description>
+      <fields>
+        <field name="Manufacturer">Wurth Elektronik</field>
+        <field name="MPN">744231220</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         FL2 — WURTH 744231220 CAN Common-Mode Choke (CAN2 supervisor)
+         ---------------------------------------------------------------- -->
+    <comp ref="FL2">
+      <value>744231220</value>
+      <footprint>Inductor_SMD:L_Bourns-SRR1260</footprint>
+      <description>Common-Mode Choke, 2x22uH, 200mA, CAN FD line filter (CAN2)</description>
+      <fields>
+        <field name="Manufacturer">Wurth Elektronik</field>
+        <field name="MPN">744231220</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R_TERM1 — CAN Bus Split Termination (2x 60R)
+         ---------------------------------------------------------------- -->
+    <comp ref="R_TERM1">
+      <value>60R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>CAN Bus Termination, 60 Ohm 1%, 0402 (half of 120R split termination)</description>
+    </comp>
+    <comp ref="R_TERM2">
+      <value>60R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>CAN Bus Termination, 60 Ohm 1%, 0402 (half of 120R split termination)</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R1, R2 — HSE Crystal Load Capacitors
+         ---------------------------------------------------------------- -->
+    <comp ref="C_X1_1">
+      <value>18pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>HSE Crystal Load Capacitor, 18pF, C0G NP0, 0402</description>
+    </comp>
+    <comp ref="C_X1_2">
+      <value>18pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>HSE Crystal Load Capacitor, 18pF, C0G NP0, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C_X2_1, C_X2_2 — RTC Crystal Load Capacitors
+         ---------------------------------------------------------------- -->
+    <comp ref="C_X2_1">
+      <value>12pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>RTC Crystal Load Capacitor, 12pF, C0G NP0, 0402</description>
+    </comp>
+    <comp ref="C_X2_2">
+      <value>12pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>RTC Crystal Load Capacitor, 12pF, C0G NP0, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R3 — FRAM SPI CS Pull-up
+         ---------------------------------------------------------------- -->
+    <comp ref="R3">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>FRAM CS Pull-up, 10k, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R4 — BOOT0 Pull-Down
+         ---------------------------------------------------------------- -->
+    <comp ref="R4">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>BOOT0 Pull-Down to GND, 10k, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R5 — INHIBIT Line Series Resistor (open-drain output current limit)
+         ---------------------------------------------------------------- -->
+    <comp ref="R5">
+      <value>47R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>INHIBIT_N Output Series Resistor, 47 Ohm, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R6 — RS-485 DE/RE Direction GPIO Series Resistor
+         ---------------------------------------------------------------- -->
+    <comp ref="R6">
+      <value>100R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>RS-485 Direction Control Series Resistor, 100 Ohm, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C1 — 5V Rail Bulk Decoupling (TPS7A4700 output)
+         ---------------------------------------------------------------- -->
+    <comp ref="C1">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <description>Output Bulk Capacitor, 10uF 16V X5R, 0805 — TPS7A4700 output</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C2 — 3.3V Rail Bulk Decoupling (AP2114HA output, main MCU)
+         ---------------------------------------------------------------- -->
+    <comp ref="C2">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <description>Output Bulk Capacitor, 10uF 10V X5R, 0805 — AP2114HA main output</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C3 — CAN Split Termination Bypass Capacitor
+         ---------------------------------------------------------------- -->
+    <comp ref="C3">
+      <value>4.7nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>CAN Split Termination Centre-Tap Bypass, 4.7nF, C0G, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C4, C5 — CAN1 Line Filter Capacitors (CAN_H, CAN_L to CAN_GND)
+         ---------------------------------------------------------------- -->
+    <comp ref="C4">
+      <value>100pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>CAN1_H EMC Filter Cap, 100pF C0G 50V, 0402</description>
+    </comp>
+    <comp ref="C5">
+      <value>100pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>CAN1_L EMC Filter Cap, 100pF C0G 50V, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C6, C7 — CAN2 Line Filter Capacitors (supervisor channel)
+         ---------------------------------------------------------------- -->
+    <comp ref="C6">
+      <value>100pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>CAN2_H EMC Filter Cap, 100pF C0G 50V, 0402</description>
+    </comp>
+    <comp ref="C7">
+      <value>100pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>CAN2_L EMC Filter Cap, 100pF C0G 50V, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C8 — RTC VBAT Decoupling
+         ---------------------------------------------------------------- -->
+    <comp ref="C8">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>RTC VBAT Decoupling, 100nF, X5R, 10V, 0402</description>
+    </comp>
+
+  </components>
+
+  <!-- ==================================================================
+       LIBRARY REFERENCES
+       ================================================================== -->
+  <libparts>
+    <libpart lib="Device" part="STM32H743ZIT6">
+      <description>ARM Cortex-M7 MCU, LQFP-144</description>
+    </libpart>
+    <libpart lib="Device" part="STM32G071RBT6">
+      <description>ARM Cortex-M0+ MCU, LQFP-64</description>
+    </libpart>
+  </libparts>
+
+  <!-- ==================================================================
+       NET CONNECTIONS
+       ================================================================== -->
+  <nets>
+
+    <!-- ================================================================
+         POWER NETS
+         ================================================================ -->
+
+    <!-- VCC_12V — 12V raw input from LPB-100 power bus -->
+    <net code="1" name="VCC_12V">
+      <node ref="J1"        pin="1"/>   <!-- 12V power input connector + -->
+      <node ref="U9"        pin="3"/>   <!-- TPS7A4700 input (VIN) -->
+      <node ref="U8"        pin="1"/>   <!-- RECOM R05P05D input (primary +5V in) -->
+    </net>
+
+    <!-- VCC_5V — 5V regulated rail (from TPS7A4700) -->
+    <net code="2" name="VCC_5V">
+      <node ref="U9"        pin="9"/>   <!-- TPS7A4700 output (VOUT) -->
+      <node ref="U10"       pin="1"/>   <!-- AP2114HA input (main MCU 3V3 LDO in) -->
+      <node ref="U11"       pin="1"/>   <!-- AP2114HA input (supervisor 3V3 LDO in) -->
+      <node ref="U5"        pin="3"/>   <!-- TCAN1042 VCC (logic supply, VIO tied to 3V3) -->
+      <node ref="U6"        pin="3"/>   <!-- TCAN1042 VCC -->
+      <node ref="U13"       pin="1"/>   <!-- MCP809T-460 VDD (5V rail monitor) -->
+      <node ref="U17"       pin="1"/>   <!-- LP38693MP-3.8 input (LTE modem supply) -->
+      <node ref="C1"        pin="1"/>   <!-- 5V bulk decoupling cap + -->
+    </net>
+
+    <!-- VCC_3V3 — 3.3V main logic rail (from AP2114HA U10) -->
+    <net code="3" name="VCC_3V3">
+      <node ref="U10"       pin="2"/>   <!-- AP2114HA output -->
+      <node ref="U1"        pin="1"/>   <!-- STM32H743 VDD (pin 1, representative) -->
+      <node ref="U1"        pin="73"/>  <!-- STM32H743 VDDA (analog supply) -->
+      <node ref="U3"        pin="8"/>   <!-- MB85RS4MT VDD -->
+      <node ref="U4"        pin="8"/>   <!-- MCP7940N VCC -->
+      <node ref="U5"        pin="8"/>   <!-- TCAN1042 VIO (3.3V logic I/O ref) -->
+      <node ref="U6"        pin="8"/>   <!-- TCAN1042 VIO -->
+      <node ref="U7"        pin="1"/>   <!-- MAX3485 VCC -->
+      <node ref="U12"       pin="1"/>   <!-- MCP809T-315 VDD -->
+      <node ref="U14"       pin="2"/>   <!-- SAM-M10Q VIO (3.3V logic) -->
+      <node ref="U15"       pin="6"/>   <!-- PRTR5V0U2X VCC -->
+      <node ref="R3"        pin="1"/>   <!-- FRAM CS pull-up to 3V3 -->
+      <node ref="C2"        pin="1"/>   <!-- 3V3 bulk decoupling cap + -->
+    </net>
+
+    <!-- VCC_3V3_SUPER — Independent 3.3V for STM32G071 supervisor (from U11) -->
+    <net code="4" name="VCC_3V3_SUPER">
+      <node ref="U11"       pin="2"/>   <!-- AP2114HA supervisor output -->
+      <node ref="U2"        pin="1"/>   <!-- STM32G071 VDD -->
+      <node ref="U2"        pin="2"/>   <!-- STM32G071 VDD (multiple power pins) -->
+    </net>
+
+    <!-- VCC_5V_ISO — Isolated 5V for CAN transceivers bus side (from R05P05D) -->
+    <net code="5" name="VCC_5V_ISO">
+      <node ref="U8"        pin="6"/>   <!-- RECOM +5V isolated output -->
+      <node ref="U5"        pin="5"/>   <!-- TCAN1042 U5 VCC (bus-side) -->
+      <node ref="U6"        pin="5"/>   <!-- TCAN1042 U6 VCC (bus-side) -->
+    </net>
+
+    <!-- VCC_3V8_MODEM — 3.8V LTE modem supply (from LP38693MP-3.8) -->
+    <net code="6" name="VCC_3V8_MODEM">
+      <node ref="U17"       pin="2"/>   <!-- LP38693MP-3.8 output -->
+      <node ref="J6"        pin="31"/>  <!-- M.2 socket VBAT supply to modem -->
+      <node ref="J6"        pin="33"/>  <!-- M.2 socket VBAT supply to modem (dual pin) -->
+    </net>
+
+    <!-- VCC_1V8_GNSS — 1.8V GNSS module Vcore (from ADP1714AUJZ-1.8) -->
+    <net code="7" name="VCC_1V8_GNSS">
+      <node ref="U16"       pin="5"/>   <!-- ADP1714 output -->
+      <node ref="U14"       pin="1"/>   <!-- SAM-M10Q VCC (Vcore 1.71-1.89V) -->
+    </net>
+
+    <!-- GND — Common board ground -->
+    <net code="8" name="GND">
+      <node ref="J1"        pin="2"/>   <!-- Power input connector GND -->
+      <node ref="U1"        pin="12"/>  <!-- STM32H743 VSS -->
+      <node ref="U1"        pin="144"/> <!-- STM32H743 VSS (multiple ground pins) -->
+      <node ref="U2"        pin="32"/>  <!-- STM32G071 VSS -->
+      <node ref="U3"        pin="4"/>   <!-- MB85RS4MT VSS -->
+      <node ref="U4"        pin="1"/>   <!-- MCP7940N VSS / GND -->
+      <node ref="U5"        pin="2"/>   <!-- TCAN1042 GND (logic side) -->
+      <node ref="U6"        pin="2"/>   <!-- TCAN1042 GND (logic side) -->
+      <node ref="U7"        pin="5"/>   <!-- MAX3485 GND -->
+      <node ref="U8"        pin="3"/>   <!-- RECOM primary GND -->
+      <node ref="U9"        pin="1"/>   <!-- TPS7A4700 GND (exposed pad) -->
+      <node ref="U10"       pin="3"/>   <!-- AP2114HA GND -->
+      <node ref="U11"       pin="3"/>   <!-- AP2114HA supervisor GND -->
+      <node ref="U12"       pin="2"/>   <!-- MCP809T-315 GND -->
+      <node ref="U13"       pin="2"/>   <!-- MCP809T-460 GND -->
+      <node ref="U14"       pin="8"/>   <!-- SAM-M10Q GND -->
+      <node ref="U15"       pin="3"/>   <!-- PRTR5V0U2X GND -->
+      <node ref="U16"       pin="2"/>   <!-- ADP1714 GND -->
+      <node ref="U17"       pin="3"/>   <!-- LP38693MP GND -->
+      <node ref="D1"        pin="1"/>   <!-- 1N4148WS cathode (before VBAT isolation) -->
+      <node ref="X1"        pin="2"/>   <!-- Crystal case GND -->
+      <node ref="X2"        pin="2"/>   <!-- RTC crystal case GND -->
+      <node ref="R4"        pin="2"/>   <!-- BOOT0 pull-down to GND -->
+      <node ref="C1"        pin="2"/>   <!-- 5V decoupling cap - -->
+      <node ref="C2"        pin="2"/>   <!-- 3V3 decoupling cap - -->
+      <node ref="C3"        pin="2"/>   <!-- CAN split termination bypass cap - -->
+      <node ref="C4"        pin="2"/>   <!-- CAN1_H filter cap - -->
+      <node ref="C5"        pin="2"/>   <!-- CAN1_L filter cap - -->
+      <node ref="C8"        pin="2"/>   <!-- RTC VBAT decoupling - -->
+      <node ref="J5"        pin="3"/>   <!-- SWD connector GND -->
+      <node ref="J5"        pin="5"/>   <!-- SWD connector GND -->
+      <node ref="J5"        pin="9"/>   <!-- SWD connector GND -->
+      <node ref="BT1"       pin="2"/>   <!-- Coin cell - terminal -->
+    </net>
+
+    <!-- CAN_GND_ISO — Isolated CAN bus ground (separate from logic GND) -->
+    <net code="9" name="CAN_GND_ISO">
+      <node ref="U8"        pin="4"/>   <!-- RECOM isolated GND output -->
+      <node ref="U5"        pin="4"/>   <!-- TCAN1042 bus-side GND -->
+      <node ref="U6"        pin="4"/>   <!-- TCAN1042 bus-side GND -->
+      <node ref="C6"        pin="2"/>   <!-- CAN2_H filter cap - (to isolated GND) -->
+      <node ref="C7"        pin="2"/>   <!-- CAN2_L filter cap - (to isolated GND) -->
+      <node ref="J2"        pin="3"/>   <!-- Board bus connector CAN_GND pin -->
+    </net>
+
+    <!-- ================================================================
+         CAN FD NETS
+         ================================================================ -->
+
+    <!-- CAN1_H — CAN FD main bus differential HIGH line -->
+    <net code="10" name="CAN1_H">
+      <node ref="U1"        pin="95"/>  <!-- STM32H743 FDCAN1_TX → (routed to U5 TXD) -->
+      <node ref="U5"        pin="6"/>   <!-- TCAN1042 CANH output (bus side) -->
+      <node ref="FL1"       pin="1"/>   <!-- Common-mode choke CAN_H side (MCU side) -->
+      <node ref="C4"        pin="1"/>   <!-- CAN1_H EMC filter cap + -->
+      <node ref="R_TERM1"   pin="1"/>   <!-- Split termination R1 (CAN_H to centre) -->
+      <node ref="J2"        pin="1"/>   <!-- Board bus connector CAN_H pin -->
+    </net>
+
+    <!-- CAN1_L — CAN FD main bus differential LOW line -->
+    <net code="11" name="CAN1_L">
+      <node ref="U5"        pin="7"/>   <!-- TCAN1042 CANL output (bus side) -->
+      <node ref="FL1"       pin="2"/>   <!-- Common-mode choke CAN_L side (MCU side) -->
+      <node ref="C5"        pin="1"/>   <!-- CAN1_L EMC filter cap + -->
+      <node ref="R_TERM2"   pin="1"/>   <!-- Split termination R2 (CAN_L to centre) -->
+      <node ref="J2"        pin="2"/>   <!-- Board bus connector CAN_L pin -->
+    </net>
+
+    <!-- CAN1_TX — STM32H743 FDCAN1 TX to CAN transceiver TXD -->
+    <net code="12" name="CAN1_TX">
+      <node ref="U1"        pin="95"/>  <!-- STM32H743 PA12 / FDCAN1_TX -->
+      <node ref="U5"        pin="1"/>   <!-- TCAN1042 TXD input -->
+    </net>
+
+    <!-- CAN1_RX — CAN transceiver RXD to STM32H743 FDCAN1 RX -->
+    <net code="13" name="CAN1_RX">
+      <node ref="U5"        pin="4"/>   <!-- TCAN1042 RXD output (logic side, pin 4 is RXD) -->
+      <node ref="U1"        pin="94"/>  <!-- STM32H743 PA11 / FDCAN1_RX -->
+    </net>
+
+    <!-- CAN2_H — Private supervisor CAN FD differential HIGH -->
+    <net code="14" name="CAN2_H">
+      <node ref="U6"        pin="6"/>   <!-- TCAN1042 U6 CANH -->
+      <node ref="FL2"       pin="1"/>   <!-- Common-mode choke CAN2_H -->
+      <node ref="C6"        pin="1"/>   <!-- CAN2_H EMC filter cap + -->
+    </net>
+
+    <!-- CAN2_L — Private supervisor CAN FD differential LOW -->
+    <net code="15" name="CAN2_L">
+      <node ref="U6"        pin="7"/>   <!-- TCAN1042 U6 CANL -->
+      <node ref="FL2"       pin="2"/>   <!-- Common-mode choke CAN2_L -->
+      <node ref="C7"        pin="1"/>   <!-- CAN2_L EMC filter cap + -->
+    </net>
+
+    <!-- CAN2_TX — U2 (STM32G071) FDCAN1_TX to CAN2 transceiver -->
+    <net code="16" name="CAN2_TX">
+      <node ref="U2"        pin="37"/>  <!-- STM32G071 PB9 / FDCAN1_TX -->
+      <node ref="U6"        pin="1"/>   <!-- TCAN1042 U6 TXD input -->
+    </net>
+
+    <!-- CAN2_RX — CAN2 transceiver RXD to U2 (STM32G071) -->
+    <net code="17" name="CAN2_RX">
+      <node ref="U6"        pin="4"/>   <!-- TCAN1042 U6 RXD output -->
+      <node ref="U2"        pin="36"/>  <!-- STM32G071 PB8 / FDCAN1_RX -->
+    </net>
+
+    <!-- ================================================================
+         RS-485 NETS
+         ================================================================ -->
+
+    <!-- RS485_A — RS-485 bus non-inverting line (A / D+) -->
+    <net code="18" name="RS485_A">
+      <node ref="U7"        pin="6"/>   <!-- MAX3485 line A (output Y / input A) -->
+      <node ref="D2"        pin="1"/>   <!-- PESD2CAN TVS protection, pin 1 (A line) -->
+      <node ref="J4"        pin="1"/>   <!-- RS-485 field connector, pin A -->
+    </net>
+
+    <!-- RS485_B — RS-485 bus inverting line (B / D-) -->
+    <net code="19" name="RS485_B">
+      <node ref="U7"        pin="7"/>   <!-- MAX3485 line B (output Z / input B) -->
+      <node ref="D2"        pin="3"/>   <!-- PESD2CAN TVS protection, pin 3 (B line) -->
+      <node ref="J4"        pin="2"/>   <!-- RS-485 field connector, pin B -->
+    </net>
+
+    <!-- RS485_TX — USART2 TX (PA2) to MAX3485 DI pin -->
+    <net code="20" name="RS485_TX">
+      <node ref="U1"        pin="76"/>  <!-- STM32H743 PA2 / USART2_TX -->
+      <node ref="U7"        pin="4"/>   <!-- MAX3485 DI (driver input) -->
+    </net>
+
+    <!-- RS485_RX — MAX3485 RO output to USART2 RX (PA3) -->
+    <net code="21" name="RS485_RX">
+      <node ref="U7"        pin="1"/>   <!-- MAX3485 RO (receiver output) -->
+      <node ref="U1"        pin="77"/>  <!-- STM32H743 PA3 / USART2_RX -->
+    </net>
+
+    <!-- RS485_DE — USART2 direction control (PA1 GPIO) to MAX3485 DE pin -->
+    <net code="22" name="RS485_DE">
+      <node ref="U1"        pin="75"/>  <!-- STM32H743 PA1 / GPIO (DE control) -->
+      <node ref="R6"        pin="1"/>   <!-- Series resistor to MAX3485 DE/~RE -->
+    </net>
+
+    <!-- RS485_DE_OUT — After series resistor, to MAX3485 DE and ~RE pins -->
+    <net code="23" name="RS485_DE_OUT">
+      <node ref="R6"        pin="2"/>   <!-- Series resistor out -->
+      <node ref="U7"        pin="2"/>   <!-- MAX3485 ~RE (receiver enable active-low) -->
+      <node ref="U7"        pin="3"/>   <!-- MAX3485 DE (driver enable active-high) -->
+    </net>
+
+    <!-- ================================================================
+         SAFETY SUPERVISOR SPI (STM32H743 SPI to STM32G071)
+         ================================================================ -->
+
+    <!-- SAFETY_SPI_CLK — SPI clock from STM32H743 to STM32G071 -->
+    <net code="24" name="SAFETY_SPI_CLK">
+      <node ref="U1"        pin="68"/>  <!-- STM32H743 PB3 / SPI1_SCK (alt: SPI to supervisor) -->
+      <node ref="U2"        pin="16"/>  <!-- STM32G071 PA5 / SPI1_SCK -->
+    </net>
+
+    <!-- SAFETY_SPI_MOSI — SPI MOSI from STM32H743 to STM32G071 -->
+    <net code="25" name="SAFETY_SPI_MOSI">
+      <node ref="U1"        pin="69"/>  <!-- STM32H743 PB4 / SPI1_MISO (acts as MOSI to supervisor) -->
+      <node ref="U2"        pin="17"/>  <!-- STM32G071 PA6 / SPI1_MISO slave input -->
+    </net>
+
+    <!-- SAFETY_SPI_MISO — SPI MISO from STM32G071 back to STM32H743 -->
+    <net code="26" name="SAFETY_SPI_MISO">
+      <node ref="U2"        pin="18"/>  <!-- STM32G071 PA7 / SPI1_MOSI slave output -->
+      <node ref="U1"        pin="70"/>  <!-- STM32H743 PB5 / SPI1_MOSI slave data back -->
+    </net>
+
+    <!-- SAFETY_CS — SPI chip select from STM32H743 to STM32G071 supervisor -->
+    <net code="27" name="SAFETY_CS">
+      <node ref="U1"        pin="67"/>  <!-- STM32H743 PA15 / SPI1_NSS (supervisor CS) -->
+      <node ref="U2"        pin="19"/>  <!-- STM32G071 PA4 / SPI1_NSS -->
+    </net>
+
+    <!-- ================================================================
+         SAFETY INHIBIT OUTPUT
+         ================================================================ -->
+
+    <!-- INHIBIT_OUT — Open-drain output from STM32G071 supervisor to LSO-100 -->
+    <net code="28" name="INHIBIT_OUT">
+      <node ref="U2"        pin="43"/>  <!-- STM32G071 PB6 / INHIBIT_N open-drain GPIO -->
+      <node ref="R5"        pin="1"/>   <!-- 47R series resistor -->
+    </net>
+
+    <!-- INHIBIT_N — After series resistor, to external INHIBIT connector -->
+    <net code="29" name="INHIBIT_N">
+      <node ref="R5"        pin="2"/>   <!-- Series resistor output -->
+      <node ref="J10"       pin="1"/>   <!-- INHIBIT output connector pin 1 -->
+    </net>
+
+    <!-- ================================================================
+         FRAM SPI (SPI1 on STM32H743)
+         ================================================================ -->
+
+    <!-- FRAM_SPI_CLK — SPI1 clock to MB85RS4MT FRAM -->
+    <net code="30" name="FRAM_SPI_CLK">
+      <node ref="U1"        pin="42"/>  <!-- STM32H743 PA5 / SPI1_SCK -->
+      <node ref="U3"        pin="6"/>   <!-- MB85RS4MT CLK -->
+    </net>
+
+    <!-- FRAM_SPI_MOSI — SPI1 MOSI to FRAM SI pin -->
+    <net code="31" name="FRAM_SPI_MOSI">
+      <node ref="U1"        pin="44"/>  <!-- STM32H743 PA7 / SPI1_MOSI -->
+      <node ref="U3"        pin="5"/>   <!-- MB85RS4MT SI (Serial Data Input) -->
+    </net>
+
+    <!-- FRAM_SPI_MISO — FRAM SO output to SPI1 MISO -->
+    <net code="32" name="FRAM_SPI_MISO">
+      <node ref="U3"        pin="2"/>   <!-- MB85RS4MT SO (Serial Data Output) -->
+      <node ref="U1"        pin="43"/>  <!-- STM32H743 PA6 / SPI1_MISO -->
+    </net>
+
+    <!-- FRAM_CS — SPI1 CS to MB85RS4MT CS pin -->
+    <net code="33" name="FRAM_CS">
+      <node ref="U1"        pin="41"/>  <!-- STM32H743 PA4 / SPI1_NSS (FRAM CS) -->
+      <node ref="U3"        pin="1"/>   <!-- MB85RS4MT CS (active-low) -->
+      <node ref="R3"        pin="2"/>   <!-- CS pull-up resistor -->
+    </net>
+
+    <!-- ================================================================
+         USB FS NETS (USB OTG HS — STM32H743 PA11/PA12)
+         ================================================================ -->
+
+    <!-- USB_DP — USB D+ line -->
+    <net code="34" name="USB_DP">
+      <node ref="U1"        pin="94"/>  <!-- STM32H743 PA12 / OTG_HS_DP -->
+      <node ref="U15"       pin="2"/>   <!-- PRTR5V0U2X ESD diode, D+ pin -->
+      <node ref="J3"        pin="4"/>   <!-- USB-C receptacle, D+ -->
+    </net>
+
+    <!-- USB_DM — USB D- line -->
+    <net code="35" name="USB_DM">
+      <node ref="U1"        pin="93"/>  <!-- STM32H743 PA11 / OTG_HS_DM -->
+      <node ref="U15"       pin="1"/>   <!-- PRTR5V0U2X ESD diode, D- pin -->
+      <node ref="J3"        pin="5"/>   <!-- USB-C receptacle, D- -->
+    </net>
+
+    <!-- ================================================================
+         GNSS NETS (SAM-M10Q — SPI2 primary interface)
+         ================================================================ -->
+
+    <!-- GNSS_TX — GNSS UART TX from SAM-M10Q to STM32H743 (secondary I2C/UART interface) -->
+    <net code="36" name="GNSS_TX">
+      <node ref="U14"       pin="9"/>   <!-- SAM-M10Q UART TX output -->
+      <node ref="U1"        pin="102"/> <!-- STM32H743 PC10 / USART3_TX (Rx side for MCU) -->
+    </net>
+
+    <!-- GNSS_RX — STM32H743 UART TX to SAM-M10Q UART RX (configuration commands) -->
+    <net code="37" name="GNSS_RX">
+      <node ref="U1"        pin="103"/> <!-- STM32H743 PC11 / USART3_RX (Tx side for MCU) -->
+      <node ref="U14"       pin="10"/>  <!-- SAM-M10Q UART RX input -->
+    </net>
+
+    <!-- GNSS_SPI_CLK — SPI2 SCK to SAM-M10Q (primary interface) -->
+    <net code="38" name="GNSS_SPI_CLK">
+      <node ref="U1"        pin="83"/>  <!-- STM32H743 PB13 / SPI2_SCK -->
+      <node ref="U14"       pin="5"/>   <!-- SAM-M10Q SPI CLK -->
+    </net>
+
+    <!-- GNSS_SPI_MOSI — SPI2 MOSI to SAM-M10Q MOSI -->
+    <net code="39" name="GNSS_SPI_MOSI">
+      <node ref="U1"        pin="85"/>  <!-- STM32H743 PB15 / SPI2_MOSI -->
+      <node ref="U14"       pin="6"/>   <!-- SAM-M10Q MOSI/SDA -->
+    </net>
+
+    <!-- GNSS_SPI_MISO — SAM-M10Q MISO to SPI2 MISO -->
+    <net code="40" name="GNSS_SPI_MISO">
+      <node ref="U14"       pin="7"/>   <!-- SAM-M10Q MISO/SCL -->
+      <node ref="U1"        pin="84"/>  <!-- STM32H743 PB14 / SPI2_MISO -->
+    </net>
+
+    <!-- GNSS_CS — SPI2 CS to SAM-M10Q CS -->
+    <net code="41" name="GNSS_CS">
+      <node ref="U1"        pin="88"/>  <!-- STM32H743 PC8 / GPIO (GNSS CS) -->
+      <node ref="U14"       pin="4"/>   <!-- SAM-M10Q SPI CS active-low -->
+    </net>
+
+    <!-- GNSS_PPS — SAM-M10Q pulse-per-second output to STM32H743 timer input -->
+    <net code="42" name="GNSS_PPS">
+      <node ref="U14"       pin="11"/>  <!-- SAM-M10Q TIMEPULSE / PPS output -->
+      <node ref="U1"        pin="89"/>  <!-- STM32H743 PC9 / TIM3_CH4 (input capture) -->
+    </net>
+
+    <!-- ================================================================
+         LTE MODEM INTERFACE NETS (EC21 via M.2 B-key)
+         ================================================================ -->
+
+    <!-- LTE_USB_DP — LTE modem USB D+ to STM32H743 OTG HS (external ULPI alt path) -->
+    <!-- Note: EC21 modem's primary interface is USB; connected to dedicated USB lines -->
+    <net code="43" name="LTE_USB_DP">
+      <node ref="J6"        pin="23"/>  <!-- M.2 connector USB D+ from EC21 -->
+      <node ref="U1"        pin="94"/>  <!-- STM32H743 OTG_HS D+ (shared with J3 via mux) -->
+    </net>
+
+    <!-- LTE_USB_DM — LTE modem USB D- -->
+    <net code="44" name="LTE_USB_DM">
+      <node ref="J6"        pin="21"/>  <!-- M.2 connector USB D- from EC21 -->
+      <node ref="U1"        pin="93"/>  <!-- STM32H743 OTG_HS D- -->
+    </net>
+
+    <!-- LTE_PWRKEY — EC21 power key (active high 0.5-1s pulse to power on) -->
+    <net code="45" name="LTE_PWRKEY">
+      <node ref="U1"        pin="100"/> <!-- STM32H743 PC2 / GPIO PWRKEY -->
+      <node ref="J6"        pin="18"/>  <!-- M.2 connector RESET_N / PWRKEY -->
+    </net>
+
+    <!-- LTE_RESET_N — EC21 hardware reset (active-low) -->
+    <net code="46" name="LTE_RESET_N">
+      <node ref="U1"        pin="101"/> <!-- STM32H743 PC3 / GPIO LTE_RESET_N -->
+      <node ref="J6"        pin="20"/>  <!-- M.2 connector RESET_N -->
+    </net>
+
+    <!-- ================================================================
+         SWD DEBUG INTERFACE NETS
+         ================================================================ -->
+
+    <!-- SWD_CLK — STM32H743 SWCLK debug clock output to J5 header -->
+    <net code="47" name="SWD_CLK">
+      <node ref="U1"        pin="72"/>  <!-- STM32H743 PA14 / SWCLK -->
+      <node ref="J5"        pin="4"/>   <!-- Cortex debug header SWDCLK -->
+    </net>
+
+    <!-- SWD_DIO — STM32H743 SWDIO (bidirectional) to J5 header -->
+    <net code="48" name="SWD_DIO">
+      <node ref="U1"        pin="71"/>  <!-- STM32H743 PA13 / SWDIO -->
+      <node ref="J5"        pin="2"/>   <!-- Cortex debug header SWDIO -->
+    </net>
+
+    <!-- SWO — STM32H743 SWO trace output to J5 -->
+    <net code="49" name="SWO">
+      <node ref="U1"        pin="66"/>  <!-- STM32H743 PB3 / SWO (TRACESWO) -->
+      <node ref="J5"        pin="6"/>   <!-- Cortex debug header SWO / nTRST -->
+    </net>
+
+    <!-- NRST — MCU hardware reset net -->
+    <net code="50" name="NRST">
+      <node ref="U1"        pin="25"/>  <!-- STM32H743 NRST -->
+      <node ref="U12"       pin="3"/>   <!-- MCP809T-315 RESET output (active-low open-drain) -->
+      <node ref="J5"        pin="10"/>  <!-- Cortex debug header nRESET -->
+    </net>
+
+    <!-- ================================================================
+         I2C NETS — RTC and Supervisory Functions
+         ================================================================ -->
+
+    <!-- RTC_SCL — I2C1 clock to MCP7940N RTC -->
+    <net code="51" name="RTC_SCL">
+      <node ref="U1"        pin="136"/> <!-- STM32H743 PB6 / I2C1_SCL -->
+      <node ref="U4"        pin="5"/>   <!-- MCP7940N SCL -->
+    </net>
+
+    <!-- RTC_SDA — I2C1 data to/from MCP7940N RTC -->
+    <net code="52" name="RTC_SDA">
+      <node ref="U1"        pin="137"/> <!-- STM32H743 PB7 / I2C1_SDA -->
+      <node ref="U4"        pin="6"/>   <!-- MCP7940N SDA -->
+    </net>
+
+    <!-- RTC_MFP_IRQ — RTC alarm interrupt to STM32H743 -->
+    <net code="53" name="RTC_MFP_IRQ">
+      <node ref="U4"        pin="3"/>   <!-- MCP7940N MFP (multifunction output) -->
+      <node ref="U1"        pin="52"/>  <!-- STM32H743 PB0 / EXTI0 interrupt input -->
+    </net>
+
+    <!-- RTC_VBAT — Coin cell backup supply to MCP7940N via isolation diode -->
+    <net code="54" name="RTC_VBAT">
+      <node ref="BT1"       pin="1"/>   <!-- Coin cell + terminal -->
+      <node ref="D1"        pin="2"/>   <!-- 1N4148WS anode (D1 isolates cell from 3V3) -->
+    </net>
+
+    <!-- RTC_VBAT_OUT — After isolation diode to MCP7940N VBAT pin -->
+    <net code="55" name="RTC_VBAT_OUT">
+      <node ref="D1"        pin="1"/>   <!-- 1N4148WS cathode -->
+      <node ref="U4"        pin="2"/>   <!-- MCP7940N VBAT pin -->
+      <node ref="C8"        pin="1"/>   <!-- VBAT decoupling cap + -->
+    </net>
+
+    <!-- ================================================================
+         HSE CRYSTAL NETS
+         ================================================================ -->
+
+    <!-- OSC_IN — STM32H743 HSE crystal input -->
+    <net code="56" name="OSC_IN">
+      <node ref="U1"        pin="23"/>  <!-- STM32H743 PH0 / OSC_IN -->
+      <node ref="X1"        pin="1"/>   <!-- 25MHz crystal pin 1 -->
+      <node ref="C_X1_1"   pin="1"/>   <!-- Crystal load capacitor 1 -->
+    </net>
+
+    <!-- OSC_OUT — STM32H743 HSE crystal output (feedback) -->
+    <net code="57" name="OSC_OUT">
+      <node ref="U1"        pin="24"/>  <!-- STM32H743 PH1 / OSC_OUT -->
+      <node ref="X1"        pin="3"/>   <!-- 25MHz crystal pin 3 -->
+      <node ref="C_X1_2"   pin="1"/>   <!-- Crystal load capacitor 2 -->
+    </net>
+
+    <!-- RTC_OSC_IN — MCP7940N 32.768kHz crystal input -->
+    <net code="58" name="RTC_OSC_IN">
+      <node ref="U4"        pin="1"/>   <!-- MCP7940N X1 (32.768kHz crystal in) -->
+      <node ref="X2"        pin="1"/>   <!-- 32.768kHz crystal pin 1 -->
+      <node ref="C_X2_1"   pin="1"/>   <!-- RTC crystal load capacitor 1 -->
+    </net>
+
+    <!-- RTC_OSC_OUT — MCP7940N 32.768kHz crystal output -->
+    <net code="59" name="RTC_OSC_OUT">
+      <node ref="U4"        pin="3"/>   <!-- MCP7940N X2 (32.768kHz crystal out) -->
+      <node ref="X2"        pin="3"/>   <!-- 32.768kHz crystal pin 3 -->
+      <node ref="C_X2_2"   pin="1"/>   <!-- RTC crystal load capacitor 2 -->
+    </net>
+
+    <!-- ================================================================
+         BOOT AND POWER SUPERVISION NETS
+         ================================================================ -->
+
+    <!-- BOOT0 — STM32H743 boot mode pin (pull-down to GND for Flash boot) -->
+    <net code="60" name="BOOT0">
+      <node ref="U1"        pin="141"/> <!-- STM32H743 BOOT0 -->
+      <node ref="R4"        pin="1"/>   <!-- 10k pull-down to GND -->
+    </net>
+
+    <!-- VCC_5V_FAULT_N — 5V rail supervisor reset output to STM32H743 interrupt -->
+    <net code="61" name="VCC_5V_FAULT_N">
+      <node ref="U13"       pin="3"/>   <!-- MCP809T-460 RESET output (active-low) -->
+      <node ref="U1"        pin="112"/> <!-- STM32H743 PD0 / EXTI interrupt for 5V fault -->
+    </net>
+
+    <!-- ================================================================
+         CAN SPLIT TERMINATION
+         ================================================================ -->
+
+    <!-- CAN_TERM_CENTRE — Node between two 60R split termination resistors + bypass cap -->
+    <net code="62" name="CAN_TERM_CENTRE">
+      <node ref="R_TERM1"   pin="2"/>   <!-- 60R resistor (CAN_H side) -->
+      <node ref="R_TERM2"   pin="2"/>   <!-- 60R resistor (CAN_L side) -->
+      <node ref="C3"        pin="1"/>   <!-- 4.7nF bypass to CAN_GND_ISO -->
+    </net>
+
+  </nets>
+
+</export>
