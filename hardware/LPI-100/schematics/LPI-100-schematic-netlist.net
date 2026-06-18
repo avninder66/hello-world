@@ -1,0 +1,1140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  KiCad XML Netlist Format (compatible with KiCad 7.0 / pcbnew import)
+  ======================================================================
+  Document   : LPI-100-SCH-001
+  Title      : Lumina LPI-100 Pedestrian Interface Board — Full Board Netlist
+  Revision   : A
+  Date       : 2026-06-18
+  Author     : Lumina Engineering
+  Tool       : KiCad 7.0 (EESchema netlist export)
+
+  Notes:
+  - This netlist represents all key nets and components on the LPI-100
+    as defined in LUM-ARCH-ELEC-001 Rev A.
+  - Passive component values are per the architecture document.
+  - Pin numbers follow datasheet reference for each component.
+  - Power symbols (V12_IN, V3V3, GND, etc.) are shown as net drivers
+    with no physical footprint.
+  - Board dimensions: 80mm × 60mm, 4-layer FR4.
+  ======================================================================
+-->
+<export version="E">
+
+  <!-- ==================================================================
+       DESIGN METADATA
+       ================================================================== -->
+  <design>
+    <source>LPI-100-SCH-001</source>
+    <date>2026-06-18</date>
+    <tool>Lumina Engineering / KiCad 7.0</tool>
+    <sheet number="1" name="LPI-100 Pedestrian Interface Board">
+      <title_block>
+        <title>Lumina LPI-100 Pedestrian Interface Board</title>
+        <company>Lumina Engineering Ltd</company>
+        <rev>A</rev>
+        <date>2026-06-18</date>
+        <source>LPI-100-SCH-001</source>
+        <comment number="1" value="STM32G031K8T6 Local MCU + TCAN1042VDRQ1 CAN FD Transceiver"/>
+        <comment number="2" value="80 x 60 mm, 4-layer FR4"/>
+        <comment number="3" value="See LUM-ARCH-ELEC-001 for full design rationale"/>
+        <comment number="4" value="Interfaces: M12 CAN, push buttons x2, wait lamp, audio, tactile cone, ped signals"/>
+      </title_block>
+    </sheet>
+  </design>
+
+  <!-- ==================================================================
+       COMPONENT LIST
+       ================================================================== -->
+  <components>
+
+    <!-- ----------------------------------------------------------------
+         U1 — TCAN1042VDRQ1 CAN FD Transceiver
+         ---------------------------------------------------------------- -->
+    <comp ref="U1">
+      <value>TCAN1042VDRQ1</value>
+      <footprint>Package_SO:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <description>CAN FD Transceiver, ISO 11898-2, 5V, SOIC-8, AEC-Q100</description>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">TCAN1042VDRQ1</field>
+        <field name="Datasheet">https://www.ti.com/lit/ds/symlink/tcan1042-q1.pdf</field>
+        <field name="Supplier">Farnell</field>
+        <field name="Bus">CAN1 — LPI-100 board CAN FD bus (from LCU-100 via J1 M12)</field>
+      </fields>
+      <!-- Pin mapping: 1=TXD, 2=GND, 3=VCC, 4=RXD, 5=STB, 6=CANH, 7=CANL, 8=NC -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U2 — STM32G031K8T6 Local MCU (button debounce and CAN framing)
+         ---------------------------------------------------------------- -->
+    <comp ref="U2">
+      <value>STM32G031K8T6</value>
+      <footprint>Package_QFP:LQFP-32_7x7mm_P0.8mm</footprint>
+      <description>ARM Cortex-M0+ MCU, 64MHz, 64KB Flash, 8KB RAM, LQFP-32</description>
+      <fields>
+        <field name="Manufacturer">STMicroelectronics</field>
+        <field name="MPN">STM32G031K8T6</field>
+        <field name="Datasheet">https://www.st.com/resource/en/datasheet/stm32g031k8.pdf</field>
+        <field name="Supplier">Farnell</field>
+        <field name="Role">Local button debounce, CAN FD frame generation, PWM for ped signals and audio</field>
+      </fields>
+      <!-- Pin mapping (LQFP-32): 1=NRST, 4=BOOT0, 5=PA0, 6=PA1, 7=PA2, 8=PA3,
+           9=PA4, 10=PA5, 11=PA6, 12=PA7, 13=PB0, 14=PB1, 15=PA8, 16=PA9,
+           17=PA10, 18=PA11, 19=PA12, 20=PA13/SWDIO, 21=PA14/SWCLK, 22=PA15,
+           23=PB3, 24=PB4, 25=PB5, 26=PB6, 27=PB7, 28=PB8, 29=VDD, 30=VSS,
+           31=VDDA, 32=PB9 -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U3 — SN74LVC1G17DCK Schmitt Trigger Buffer (push button conditioning)
+         ---------------------------------------------------------------- -->
+    <comp ref="U3">
+      <value>SN74LVC1G17DCK</value>
+      <footprint>Package_TO_SOT_SMD:SOT-353_SC-70-5</footprint>
+      <description>Single Schmitt-Trigger Buffer, 3.3V, SOT-353, 1.5V–5.5V supply</description>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">SN74LVC1G17DCK</field>
+        <field name="Datasheet">https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf</field>
+        <field name="Role">Push button A input conditioning / noise rejection</field>
+      </fields>
+      <!-- Pin mapping (SOT-353): 1=A, 2=GND, 3=Y, 4=VCC -->
+      <!-- Note: Second button (BTN_IN_B) conditioned by internal Schmitt on STM32G031 GPIO -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U4 — PAM8008 Class-D Audio Amplifier
+         ---------------------------------------------------------------- -->
+    <comp ref="U4">
+      <value>PAM8008</value>
+      <footprint>Package_SO:SOP-16_3.9x9.9mm_P1.27mm</footprint>
+      <description>2x2.5W Class-D Audio Amplifier, 5V, SOP-16, filterless</description>
+      <fields>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">PAM8008TR</field>
+        <field name="Datasheet">https://www.diodes.com/assets/Datasheets/PAM8008.pdf</field>
+        <field name="Role">Drives SP1 loudspeaker for pedestrian audible tones (wait / cross / approach)</field>
+      </fields>
+      <!-- Pin mapping (SOP-16):
+           1=LINP, 2=LINN, 3=RINP, 4=RINN, 5=LOVP, 6=LOVN, 7=ROVP, 8=ROVN,
+           9=SD, 10=GAIN, 11=MUTE, 12=PVDD, 13=PVSS, 14=AVDD, 15=AVSS, 16=NC -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U5 — DRV8833PWPR Dual H-Bridge (tactile cone solenoid drive)
+         ---------------------------------------------------------------- -->
+    <comp ref="U5">
+      <value>DRV8833PWPR</value>
+      <footprint>Package_SO:TSSOP-16_4.4x5mm_P0.65mm</footprint>
+      <description>Dual H-Bridge Motor Driver, 10V/1.5A, TSSOP-16</description>
+      <fields>
+        <field name="Manufacturer">Texas Instruments</field>
+        <field name="MPN">DRV8833PWPR</field>
+        <field name="Datasheet">https://www.ti.com/lit/ds/symlink/drv8833.pdf</field>
+        <field name="Role">Drives TA1 tactile cone solenoid via H-bridge A; H-bridge B spare</field>
+      </fields>
+      <!-- Pin mapping (TSSOP-16):
+           1=AOUT1, 2=AOUT2, 3=BOUT2, 4=BOUT1, 5=VM, 6=GND, 7=GND, 8=nSLEEP,
+           9=AIN1, 10=AIN2, 11=BIN1, 12=BIN2, 13=nFAULT, 14=VINT, 15=EEP, 16=nSTBY -->
+      <!-- Note: DRV8833 uses nSLEEP and nSTBY; nFAULT is open-drain fault indicator -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         U6 — AP2114HA-3.3TRG1 3.3V LDO Regulator (local logic supply)
+         ---------------------------------------------------------------- -->
+    <comp ref="U6">
+      <value>AP2114HA-3.3TRG1</value>
+      <footprint>Package_TO_SOT_SMD:SOT-223-3_TabPin2</footprint>
+      <description>800mA LDO Regulator, 3.3V fixed output, SOT-223</description>
+      <fields>
+        <field name="Manufacturer">Diodes Incorporated</field>
+        <field name="MPN">AP2114HA-3.3TRG1</field>
+        <field name="Datasheet">https://www.diodes.com/assets/Datasheets/AP2114.pdf</field>
+        <field name="Vout">3.3V (LPI-100 local logic rail for U2 MCU and U3 buffer)</field>
+      </fields>
+      <!-- Pin mapping (SOT-223): 1=GND, 2=OUT (tab), 3=IN, 4=NC -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         Q1 — 2N7002 N-channel MOSFET (wait lamp drive)
+         ---------------------------------------------------------------- -->
+    <comp ref="Q1">
+      <value>2N7002</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <description>N-Channel MOSFET, 60V, 300mA, SOT-23 — wait lamp low-side switch</description>
+      <fields>
+        <field name="Manufacturer">Nexperia</field>
+        <field name="MPN">2N7002,215</field>
+        <field name="Role">Low-side drive for WAIT lamp via J3 pin 1; gate driven from U2 GPIO</field>
+      </fields>
+      <!-- Pin mapping (SOT-23): 1=G(gate), 2=S(source), 3=D(drain) -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         Q2 — 2N7002 N-channel MOSFET (push button LED illumination drive)
+         ---------------------------------------------------------------- -->
+    <comp ref="Q2">
+      <value>2N7002</value>
+      <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
+      <description>N-Channel MOSFET, 60V, 300mA, SOT-23 — button LED low-side switch</description>
+      <fields>
+        <field name="Manufacturer">Nexperia</field>
+        <field name="MPN">2N7002,215</field>
+        <field name="Role">Low-side drive for illuminated push button LED via J2; gate from U2 GPIO</field>
+      </fields>
+      <!-- Pin mapping (SOT-23): 1=G(gate), 2=S(source), 3=D(drain) -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         D1 — SMBJ12A TVS Diode (output line transient protection)
+         ---------------------------------------------------------------- -->
+    <comp ref="D1">
+      <value>SMBJ12A</value>
+      <footprint>Diode_SMD:D_SMB</footprint>
+      <description>Unidirectional TVS Diode, 12V standoff, 19.9V clamp @ 60A, SMB — WAIT_LAMP output</description>
+      <fields>
+        <field name="Manufacturer">Littelfuse</field>
+        <field name="MPN">SMBJ12A</field>
+        <field name="Role">Transient suppression on WAIT_LAMP output line (J3 pin 1)</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         D2 — SMBJ12A TVS Diode (tactile cone solenoid flyback / transient protection)
+         ---------------------------------------------------------------- -->
+    <comp ref="D2">
+      <value>SMBJ12A</value>
+      <footprint>Diode_SMD:D_SMB</footprint>
+      <description>Unidirectional TVS Diode, 12V standoff, SMB — tactile cone solenoid output</description>
+      <fields>
+        <field name="Manufacturer">Littelfuse</field>
+        <field name="MPN">SMBJ12A</field>
+        <field name="Role">Transient suppression on TACT_A/B solenoid output lines (J4 pins 1/2)</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         D3 — STPS1L60A Schottky Diode (reverse polarity protection on V12_IN)
+         ---------------------------------------------------------------- -->
+    <comp ref="D3">
+      <value>STPS1L60A</value>
+      <footprint>Diode_SMD:D_SMA</footprint>
+      <description>Schottky Rectifier, 60V, 1A, SMA — reverse polarity protection on 12V input</description>
+      <fields>
+        <field name="Manufacturer">STMicroelectronics</field>
+        <field name="MPN">STPS1L60A</field>
+        <field name="Role">Series reverse-protection diode on V12_IN before U6 LDO and DRV8833 VM</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R1 — CAN TXD pull-up (U1 TXD pin, 10k to V3V3)
+         ---------------------------------------------------------------- -->
+    <comp ref="R1">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>CAN TXD Pull-up, 10k 1%, 0402 — holds TXD high (recessive) on power-up</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R2 — CAN STB pull-down (U1 STB pin, 10k to GND — normal mode)
+         ---------------------------------------------------------------- -->
+    <comp ref="R2">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>CAN STB Pull-down, 10k 1%, 0402 — default normal mode (STB low = active)</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R3 — Push button A pull-up (BTN_IN_A, 10k to V3V3)
+         ---------------------------------------------------------------- -->
+    <comp ref="R3">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Push Button A Input Pull-up, 10k, 0402 — active-low button input</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R4 — Push button B pull-up (BTN_IN_B, 10k to V3V3)
+         ---------------------------------------------------------------- -->
+    <comp ref="R4">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Push Button B Input Pull-up, 10k, 0402 — active-low button input</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R5 — Q1 gate resistor (WAIT_LAMP drive, 100R series)
+         ---------------------------------------------------------------- -->
+    <comp ref="R5">
+      <value>100R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Q1 Gate Series Resistor, 100 Ohm, 0402 — limits gate drive current for WAIT lamp MOSFET</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R6 — Q2 gate resistor (BTN_LED drive, 100R series)
+         ---------------------------------------------------------------- -->
+    <comp ref="R6">
+      <value>100R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Q2 Gate Series Resistor, 100 Ohm, 0402 — limits gate drive for button LED MOSFET</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R7 — Button LED current-limit resistor (BTN_LED_A, 47R series)
+         ---------------------------------------------------------------- -->
+    <comp ref="R7">
+      <value>47R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Button LED Current Limit Resistor, 47 Ohm, 0402 — series with J2 button LED anode</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R8 — PED_RED_OUT current-limit resistor (56R series to J4 pin 3)
+         ---------------------------------------------------------------- -->
+    <comp ref="R8">
+      <value>56R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Ped Red Signal Current Limit, 56 Ohm 1%, 0402 — PWM output to J4 PED_RED line</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R9 — PED_GREEN_OUT current-limit resistor (56R series to J4 pin 4)
+         ---------------------------------------------------------------- -->
+    <comp ref="R9">
+      <value>56R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Ped Green Signal Current Limit, 56 Ohm 1%, 0402 — PWM output to J4 PED_GREEN line</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R10 — Audio input bias resistor (AUDIO_INP to LINP, 1k)
+         ---------------------------------------------------------------- -->
+    <comp ref="R10">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Audio Input AC Coupling / Bias, 1k, 0402 — U2 DAC/PWM out to U4 LINP</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R11 — Audio input bias resistor (AUDIO_INN to LINN, 1k)
+         ---------------------------------------------------------------- -->
+    <comp ref="R11">
+      <value>1k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Audio Input AC Coupling / Bias, 1k, 0402 — U2 PWM complement to U4 LINN</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R12 — Audio volume pot / gain resistor (PAM8008 GAIN pin, 10k to GND)
+         ---------------------------------------------------------------- -->
+    <comp ref="R12">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>PAM8008 GAIN Set Resistor, 10k, 0402 — sets audio output gain level</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R13 — DRV8833 nSLEEP pull-up (V3V3 default-on)
+         ---------------------------------------------------------------- -->
+    <comp ref="R13">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>DRV8833 nSLEEP Pull-up, 10k, 0402 — default awake; U2 can pull low to sleep</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R14 — DRV8833 AIN1 series resistor (U2 GPIO to DRV8833 AIN1)
+         ---------------------------------------------------------------- -->
+    <comp ref="R14">
+      <value>100R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>DRV8833 AIN1 Series Resistor, 100 Ohm, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R15 — DRV8833 AIN2 series resistor (U2 GPIO to DRV8833 AIN2)
+         ---------------------------------------------------------------- -->
+    <comp ref="R15">
+      <value>100R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>DRV8833 AIN2 Series Resistor, 100 Ohm, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R16 — FAULT_LED current-limit resistor (U2 GPIO → status LED, 470R)
+         ---------------------------------------------------------------- -->
+    <comp ref="R16">
+      <value>470R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>Fault Status LED Current Limit, 470 Ohm, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R17 — U2 BOOT0 pull-down (10k to GND — flash boot mode)
+         ---------------------------------------------------------------- -->
+    <comp ref="R17">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>STM32G031 BOOT0 Pull-Down, 10k, 0402 — ensures normal flash boot on power-up</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R18 — CAN 120R termination resistor (LPI-100 is CAN bus end-node)
+         ---------------------------------------------------------------- -->
+    <comp ref="R18">
+      <value>120R</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>CAN Bus Termination, 120 Ohm 1%, 0402 — LPI-100 is physical end of CAN segment</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R19 — nFAULT pull-up (DRV8833 open-drain fault output, 10k to V3V3)
+         ---------------------------------------------------------------- -->
+    <comp ref="R19">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>DRV8833 nFAULT Pull-up, 10k, 0402 — pulled high; driven low by DRV8833 on fault</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         R20 — PAM8008 MUTE pull-up (default un-muted, 10k to AVDD)
+         ---------------------------------------------------------------- -->
+    <comp ref="R20">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <description>PAM8008 MUTE Pull-up, 10k, 0402 — default unmuted; U2 GPIO can pull low to mute</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C1 — V12_IN bulk decoupling (after D3, 100uF electrolytic)
+         ---------------------------------------------------------------- -->
+    <comp ref="C1">
+      <value>100uF</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <description>12V Rail Input Bulk Capacitor, 100uF 25V X5R, 1210 — after reverse protection D3</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C2 — V12_IN bypass (100nF ceramic, close to U6 LDO input)
+         ---------------------------------------------------------------- -->
+    <comp ref="C2">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>LDO Input Bypass, 100nF 25V X7R, 0402 — close to U6 AP2114HA input pin</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C3 — V3V3 output bulk decoupling (10uF, U6 output)
+         ---------------------------------------------------------------- -->
+    <comp ref="C3">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <description>3.3V Output Bulk Capacitor, 10uF 10V X5R, 0805 — AP2114HA output stabilisation</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C4 — V3V3 bypass (100nF, close to U2 STM32 VDD pin)
+         ---------------------------------------------------------------- -->
+    <comp ref="C4">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>MCU VDD Bypass, 100nF 10V X7R, 0402 — close to U2 VDD pin 29</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C5 — V3V3 bypass (100nF, close to U2 VDDA pin)
+         ---------------------------------------------------------------- -->
+    <comp ref="C5">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>MCU VDDA Bypass, 100nF 10V C0G, 0402 — analog supply decoupling on U2 pin 31</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C6 — U1 TCAN1042 VCC bypass (100nF)
+         ---------------------------------------------------------------- -->
+    <comp ref="C6">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>CAN Transceiver VCC Bypass, 100nF 10V X7R, 0402 — close to U1 pin 3</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C7 — CAN line filter cap CANH (100pF EMC, CAN_H to GND)
+         ---------------------------------------------------------------- -->
+    <comp ref="C7">
+      <value>100pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>CAN_H EMC Filter Capacitor, 100pF C0G 50V, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C8 — CAN line filter cap CANL (100pF EMC, CAN_L to GND)
+         ---------------------------------------------------------------- -->
+    <comp ref="C8">
+      <value>100pF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>CAN_L EMC Filter Capacitor, 100pF C0G 50V, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C9 — U4 PAM8008 AVDD bypass (1uF + 100nF pair; this is 1uF)
+         ---------------------------------------------------------------- -->
+    <comp ref="C9">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>PAM8008 AVDD Bypass, 1uF 10V X5R, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C10 — U4 PAM8008 AVDD bypass (100nF parallel with C9)
+         ---------------------------------------------------------------- -->
+    <comp ref="C10">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>PAM8008 AVDD Bypass, 100nF 10V X7R, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C11 — U4 PAM8008 PVDD bypass (10uF bulk)
+         ---------------------------------------------------------------- -->
+    <comp ref="C11">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <description>PAM8008 PVDD Bulk Bypass, 10uF 16V X5R, 0805 — power stage supply</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C12 — U4 PAM8008 PVDD bypass (100nF ceramic parallel)
+         ---------------------------------------------------------------- -->
+    <comp ref="C12">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>PAM8008 PVDD Bypass, 100nF 16V X7R, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C13 — Audio output AC coupling cap, left channel + (LOVP to SP1)
+         ---------------------------------------------------------------- -->
+    <comp ref="C13">
+      <value>470uF</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <description>Audio Output AC Coupling, 470uF 16V, 1210 — BTL output, LOVP to SP1 pin 1</description>
+      <!-- Note: PAM8008 is filterless BTL; AC coupling caps used for speaker protection -->
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C14 — Audio output AC coupling cap, left channel - (LOVN to SP1 return)
+         ---------------------------------------------------------------- -->
+    <comp ref="C14">
+      <value>470uF</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <description>Audio Output AC Coupling, 470uF 16V, 1210 — BTL output, LOVN to SP1 pin 2</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C15 — U5 DRV8833 VM bypass (10uF bulk, close to VM pin)
+         ---------------------------------------------------------------- -->
+    <comp ref="C15">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <description>DRV8833 VM Bulk Bypass, 10uF 25V X5R, 0805 — motor supply decoupling</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C16 — U5 DRV8833 VM bypass (100nF ceramic parallel)
+         ---------------------------------------------------------------- -->
+    <comp ref="C16">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>DRV8833 VM Bypass, 100nF 25V X7R, 0402</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C17 — U3 SN74LVC1G17 VCC bypass (100nF)
+         ---------------------------------------------------------------- -->
+    <comp ref="C17">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>Schmitt Buffer VCC Bypass, 100nF 10V X7R, 0402 — close to U3 VCC pin</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C18 — Audio input AC coupling cap (U2 DAC/PWM out to R10/R11)
+         ---------------------------------------------------------------- -->
+    <comp ref="C18">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>Audio Input AC Coupling, 100nF X7R, 0402 — blocks DC offset from U2 PWM output</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C19 — V3V3 bulk decoupling at J2/J3/J4 connector region
+         ---------------------------------------------------------------- -->
+    <comp ref="C19">
+      <value>4.7uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <description>Local 3V3 Bulk Decoupling at Connector Zone, 4.7uF 10V X5R, 0603</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         C20 — V12_IN bypass (100nF, close to DRV8833 VM and Q1 drain)
+         ---------------------------------------------------------------- -->
+    <comp ref="C20">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <description>12V Local Bypass, 100nF 25V X7R, 0402 — close to DRV8833 VM and lamp drive drain</description>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J1 — M12 4-pin Circular Connector (CAN-H, CAN-L, +12V, GND from LCU-100)
+         ---------------------------------------------------------------- -->
+    <comp ref="J1">
+      <value>M12-4P-CIRCULAR</value>
+      <footprint>Connector_Circular:M12_4pin_Panel_PCBMount</footprint>
+      <description>M12 4-pin Circular Connector, IP67, panel mount — CAN+Power from LCU/LPB</description>
+      <fields>
+        <field name="Manufacturer">Binder</field>
+        <field name="MPN">713-99-0430-00-04</field>
+        <field name="Pinout">1=CAN_H, 2=CAN_L, 3=+12V, 4=GND</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J2 — 6-pin JST GH Connector (push button x2, button LED)
+         ---------------------------------------------------------------- -->
+    <comp ref="J2">
+      <value>JST-GH-6P</value>
+      <footprint>Connector_JST:JST_GH_SM06B-GHS-TB_1x06-1MP_P1.25mm_Horizontal</footprint>
+      <description>6-pin JST GH, 1.25mm pitch — push button A, push button B, button LED</description>
+      <fields>
+        <field name="Manufacturer">JST</field>
+        <field name="MPN">SM06B-GHS-TB(LF)(SN)</field>
+        <field name="Pinout">1=BTN_A_COM, 2=BTN_A_NO, 3=BTN_B_COM, 4=BTN_B_NO, 5=BTN_LED_A, 6=BTN_LED_K</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J3 — 4-pin JST GH Connector (wait lamp output + return, audio output + return)
+         ---------------------------------------------------------------- -->
+    <comp ref="J3">
+      <value>JST-GH-4P</value>
+      <footprint>Connector_JST:JST_GH_SM04B-GHS-TB_1x04-1MP_P1.25mm_Horizontal</footprint>
+      <description>4-pin JST GH, 1.25mm pitch — wait lamp + return, audio speaker + return</description>
+      <fields>
+        <field name="Manufacturer">JST</field>
+        <field name="MPN">SM04B-GHS-TB(LF)(SN)</field>
+        <field name="Pinout">1=WAIT_LAMP_OUT, 2=WAIT_LAMP_RTN, 3=AUDIO_OUT_P, 4=AUDIO_OUT_N</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         J4 — 4-pin JST GH Connector (tactile cone output, ped red/green)
+         ---------------------------------------------------------------- -->
+    <comp ref="J4">
+      <value>JST-GH-4P</value>
+      <footprint>Connector_JST:JST_GH_SM04B-GHS-TB_1x04-1MP_P1.25mm_Horizontal</footprint>
+      <description>4-pin JST GH, 1.25mm pitch — tactile cone solenoid, ped red/green outputs</description>
+      <fields>
+        <field name="Manufacturer">JST</field>
+        <field name="MPN">SM04B-GHS-TB(LF)(SN)</field>
+        <field name="Pinout">1=TACT_A, 2=TACT_B, 3=PED_RED_OUT, 4=PED_GREEN_OUT</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         SW1 — Placeholder: Panel Mount Illuminated Push Button (IP67)
+         ---------------------------------------------------------------- -->
+    <comp ref="SW1">
+      <value>BTN-ILLUM-IP67</value>
+      <footprint>Button_Switch_SMD:SW_SPST_PTS636</footprint>
+      <description>Panel mount illuminated push button placeholder, IP67, connects via J2 — fitted externally</description>
+      <fields>
+        <field name="Role">Pedestrian request button, IP67, LED ring illuminated, connects to J2</field>
+        <field name="Note">Physical button is panel-mounted external to PCB; SW1 is schematic placeholder only</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         SP1 — Loudspeaker Element Connector (8 Ohm, 2W)
+         ---------------------------------------------------------------- -->
+    <comp ref="SP1">
+      <value>SPEAKER-8R-2W</value>
+      <footprint>Connector_JST:JST_PH_S2B-PH-K_1x02_P2.0mm_Horizontal</footprint>
+      <description>Loudspeaker connector, 2-pin JST PH — 8 Ohm 2W speaker element for audible tones</description>
+      <fields>
+        <field name="Pinout">1=SPKR_P (from LOVP via C13), 2=SPKR_N (from LOVN via C14)</field>
+        <field name="Note">Speaker driven by PAM8008 U4 left channel BTL output</field>
+      </fields>
+    </comp>
+
+    <!-- ----------------------------------------------------------------
+         TA1 — Tactile Cone Solenoid Connector
+         ---------------------------------------------------------------- -->
+    <comp ref="TA1">
+      <value>TACTILE-SOLENOID</value>
+      <footprint>Connector_JST:JST_PH_S2B-PH-K_1x02_P2.0mm_Horizontal</footprint>
+      <description>Tactile cone solenoid connector, 2-pin JST PH — driven by DRV8833 H-bridge A</description>
+      <fields>
+        <field name="Pinout">1=TACT_COIL_P (AOUT1), 2=TACT_COIL_N (AOUT2)</field>
+        <field name="Note">H-bridge B of DRV8833 U5 is spare / reserved for future use</field>
+      </fields>
+    </comp>
+
+  </components>
+
+  <!-- ==================================================================
+       LIBRARY REFERENCES
+       ================================================================== -->
+  <libparts>
+    <libpart lib="Device" part="STM32G031K8T6">
+      <description>ARM Cortex-M0+ MCU, 64MHz, 64KB Flash, LQFP-32</description>
+    </libpart>
+    <libpart lib="Device" part="TCAN1042VDRQ1">
+      <description>CAN FD Transceiver, SOIC-8, AEC-Q100</description>
+    </libpart>
+    <libpart lib="Device" part="PAM8008">
+      <description>Class-D Audio Amplifier, 2x2.5W, SOP-16</description>
+    </libpart>
+    <libpart lib="Device" part="DRV8833PWPR">
+      <description>Dual H-Bridge Motor Driver, TSSOP-16</description>
+    </libpart>
+  </libparts>
+
+  <!-- ==================================================================
+       NET CONNECTIONS
+       ================================================================== -->
+  <nets>
+
+    <!-- ================================================================
+         POWER NETS
+         ================================================================ -->
+
+    <!-- V12_IN — 12V raw input from LCU-100 / LPB-100 via J1 M12 connector -->
+    <net code="1" name="V12_IN">
+      <node ref="J1"   pin="3"/>   <!-- M12 connector pin 3: +12V supply in -->
+      <node ref="D3"   pin="1"/>   <!-- STPS1L60A anode (reverse protection input) -->
+    </net>
+
+    <!-- V12_PROT — 12V after reverse protection diode D3 (internal supply rail) -->
+    <net code="2" name="V12_PROT">
+      <node ref="D3"   pin="2"/>   <!-- STPS1L60A cathode -->
+      <node ref="U6"   pin="3"/>   <!-- AP2114HA LDO input (IN pin) -->
+      <node ref="U5"   pin="5"/>   <!-- DRV8833 VM (motor supply, 2.7V-10.8V, use 12V) -->
+      <node ref="U4"   pin="12"/>  <!-- PAM8008 PVDD (power stage supply) -->
+      <node ref="Q1"   pin="3"/>   <!-- 2N7002 MOSFET drain (WAIT lamp current source) -->
+      <node ref="C1"   pin="1"/>   <!-- 100uF bulk cap + -->
+      <node ref="C2"   pin="1"/>   <!-- 100nF LDO input bypass + -->
+      <node ref="C11"  pin="1"/>   <!-- PAM8008 PVDD bulk cap + -->
+      <node ref="C12"  pin="1"/>   <!-- PAM8008 PVDD bypass + -->
+      <node ref="C15"  pin="1"/>   <!-- DRV8833 VM bulk cap + -->
+      <node ref="C16"  pin="1"/>   <!-- DRV8833 VM bypass + -->
+      <node ref="C20"  pin="1"/>   <!-- Local 12V bypass + -->
+    </net>
+
+    <!-- V3V3 — 3.3V regulated rail from U6 AP2114HA LDO -->
+    <net code="3" name="V3V3">
+      <node ref="U6"   pin="2"/>   <!-- AP2114HA LDO output (OUT / tab pin) -->
+      <node ref="U2"   pin="29"/>  <!-- STM32G031 VDD -->
+      <node ref="U2"   pin="31"/>  <!-- STM32G031 VDDA (analog supply) -->
+      <node ref="U1"   pin="3"/>   <!-- TCAN1042 VCC (logic supply) -->
+      <node ref="U3"   pin="4"/>   <!-- SN74LVC1G17 VCC -->
+      <node ref="U4"   pin="14"/>  <!-- PAM8008 AVDD (analog supply) -->
+      <node ref="R1"   pin="1"/>   <!-- CAN TXD pull-up to V3V3 -->
+      <node ref="R3"   pin="1"/>   <!-- BTN_A pull-up to V3V3 -->
+      <node ref="R4"   pin="1"/>   <!-- BTN_B pull-up to V3V3 -->
+      <node ref="R13"  pin="1"/>   <!-- DRV8833 nSLEEP pull-up to V3V3 -->
+      <node ref="R19"  pin="1"/>   <!-- DRV8833 nFAULT pull-up to V3V3 -->
+      <node ref="R20"  pin="1"/>   <!-- PAM8008 MUTE pull-up to V3V3 -->
+      <node ref="C3"   pin="1"/>   <!-- V3V3 bulk cap + -->
+      <node ref="C4"   pin="1"/>   <!-- MCU VDD bypass + -->
+      <node ref="C5"   pin="1"/>   <!-- MCU VDDA bypass + -->
+      <node ref="C6"   pin="1"/>   <!-- CAN VCC bypass + -->
+      <node ref="C9"   pin="1"/>   <!-- PAM8008 AVDD bypass + (1uF) -->
+      <node ref="C10"  pin="1"/>   <!-- PAM8008 AVDD bypass + (100nF) -->
+      <node ref="C17"  pin="1"/>   <!-- Schmitt buffer VCC bypass + -->
+      <node ref="C19"  pin="1"/>   <!-- V3V3 connector-zone bypass + -->
+    </net>
+
+    <!-- GND — Common board ground plane -->
+    <net code="4" name="GND">
+      <node ref="J1"   pin="4"/>   <!-- M12 connector pin 4: GND -->
+      <node ref="U1"   pin="2"/>   <!-- TCAN1042 GND pin 2 -->
+      <node ref="U2"   pin="30"/>  <!-- STM32G031 VSS -->
+      <node ref="U3"   pin="2"/>   <!-- SN74LVC1G17 GND -->
+      <node ref="U4"   pin="13"/>  <!-- PAM8008 PVSS -->
+      <node ref="U4"   pin="15"/>  <!-- PAM8008 AVSS -->
+      <node ref="U5"   pin="6"/>   <!-- DRV8833 GND -->
+      <node ref="U5"   pin="7"/>   <!-- DRV8833 GND (dual ground pins) -->
+      <node ref="U6"   pin="1"/>   <!-- AP2114HA LDO GND -->
+      <node ref="Q1"   pin="2"/>   <!-- 2N7002 Q1 source -->
+      <node ref="Q2"   pin="2"/>   <!-- 2N7002 Q2 source -->
+      <node ref="D1"   pin="2"/>   <!-- SMBJ12A D1 cathode (referenced to GND) -->
+      <node ref="D2"   pin="2"/>   <!-- SMBJ12A D2 cathode -->
+      <node ref="R2"   pin="2"/>   <!-- CAN STB pull-down to GND -->
+      <node ref="R12"  pin="2"/>   <!-- PAM8008 GAIN resistor to GND -->
+      <node ref="R17"  pin="2"/>   <!-- STM32G031 BOOT0 pull-down to GND -->
+      <node ref="R18"  pin="2"/>   <!-- CAN 120R termination (far end to GND) -->
+      <node ref="C1"   pin="2"/>   <!-- 100uF bulk cap - -->
+      <node ref="C2"   pin="2"/>   <!-- 100nF LDO input bypass - -->
+      <node ref="C3"   pin="2"/>   <!-- V3V3 bulk cap - -->
+      <node ref="C4"   pin="2"/>   <!-- MCU VDD bypass - -->
+      <node ref="C5"   pin="2"/>   <!-- MCU VDDA bypass - -->
+      <node ref="C6"   pin="2"/>   <!-- CAN VCC bypass - -->
+      <node ref="C7"   pin="2"/>   <!-- CAN_H EMC cap - -->
+      <node ref="C8"   pin="2"/>   <!-- CAN_L EMC cap - -->
+      <node ref="C9"   pin="2"/>   <!-- PAM8008 AVDD bypass - -->
+      <node ref="C10"  pin="2"/>   <!-- PAM8008 AVDD bypass - -->
+      <node ref="C11"  pin="2"/>   <!-- PAM8008 PVDD bulk cap - -->
+      <node ref="C12"  pin="2"/>   <!-- PAM8008 PVDD bypass - -->
+      <node ref="C15"  pin="2"/>   <!-- DRV8833 VM bulk cap - -->
+      <node ref="C16"  pin="2"/>   <!-- DRV8833 VM bypass - -->
+      <node ref="C17"  pin="2"/>   <!-- Schmitt buffer VCC bypass - -->
+      <node ref="C19"  pin="2"/>   <!-- V3V3 connector-zone bypass - -->
+      <node ref="C20"  pin="2"/>   <!-- Local 12V bypass - -->
+      <node ref="J2"   pin="6"/>   <!-- JST GH J2 BTN_LED_K (button LED cathode return) -->
+      <node ref="J3"   pin="2"/>   <!-- JST GH J3 WAIT_LAMP_RTN -->
+    </net>
+
+    <!-- ================================================================
+         CAN FD NETS
+         ================================================================ -->
+
+    <!-- CAN_H — CAN FD differential HIGH line (from J1 M12 to U1 TCAN1042) -->
+    <net code="5" name="CAN_H">
+      <node ref="J1"   pin="1"/>   <!-- M12 connector pin 1: CAN_H from LCU/LPB -->
+      <node ref="U1"   pin="6"/>   <!-- TCAN1042 CANH (bus-side output, pin 6) -->
+      <node ref="C7"   pin="1"/>   <!-- CAN_H EMC filter cap + -->
+      <node ref="R18"  pin="1"/>   <!-- 120R termination resistor, CAN_H end -->
+    </net>
+
+    <!-- CAN_L — CAN FD differential LOW line (from J1 M12 to U1 TCAN1042) -->
+    <net code="6" name="CAN_L">
+      <node ref="J1"   pin="2"/>   <!-- M12 connector pin 2: CAN_L from LCU/LPB -->
+      <node ref="U1"   pin="7"/>   <!-- TCAN1042 CANL (bus-side output, pin 7) -->
+      <node ref="C8"   pin="1"/>   <!-- CAN_L EMC filter cap + -->
+    </net>
+
+    <!-- CAN_TXD — STM32G031 FDCAN TX output to TCAN1042 TXD input -->
+    <net code="7" name="CAN_TXD">
+      <node ref="U2"   pin="19"/>  <!-- STM32G031 PA12 / FDCAN1_TX (pin 19 in LQFP-32) -->
+      <node ref="R1"   pin="2"/>   <!-- TXD pull-up resistor (other end to V3V3) -->
+      <node ref="U1"   pin="1"/>   <!-- TCAN1042 TXD input (pin 1) -->
+    </net>
+
+    <!-- CAN_RXD — TCAN1042 RXD output to STM32G031 FDCAN RX input -->
+    <net code="8" name="CAN_RXD">
+      <node ref="U1"   pin="4"/>   <!-- TCAN1042 RXD output (pin 4) -->
+      <node ref="U2"   pin="18"/>  <!-- STM32G031 PA11 / FDCAN1_RX (pin 18 in LQFP-32) -->
+    </net>
+
+    <!-- CAN_STB — U2 GPIO to TCAN1042 STB standby control (active-high = standby) -->
+    <net code="9" name="CAN_STB">
+      <node ref="U2"   pin="17"/>  <!-- STM32G031 PA10 / GPIO CAN_STB control -->
+      <node ref="R2"   pin="1"/>   <!-- STB pull-down resistor (other end to GND) -->
+      <node ref="U1"   pin="5"/>   <!-- TCAN1042 STB (pin 5) -->
+    </net>
+
+    <!-- ================================================================
+         PUSH BUTTON INPUT NETS
+         ================================================================ -->
+
+    <!-- BTN_RAW_A — Raw push button A contact (NO), before Schmitt trigger -->
+    <net code="10" name="BTN_RAW_A">
+      <node ref="J2"   pin="2"/>   <!-- JST GH J2 pin 2: BTN_A normally-open contact -->
+      <node ref="R3"   pin="2"/>   <!-- BTN_A pull-up resistor (other end to V3V3) -->
+      <node ref="U3"   pin="1"/>   <!-- SN74LVC1G17 Schmitt trigger input A -->
+    </net>
+
+    <!-- BTN_COM_A — Push button A common (ground side via J2 pin 1) -->
+    <net code="11" name="BTN_COM_A">
+      <node ref="J2"   pin="1"/>   <!-- JST GH J2 pin 1: BTN_A common contact (to GND) -->
+    </net>
+    <!-- Note: BTN_COM_A connects to GND on the button/beacon assembly side;
+         PCB side terminates at J2 pin 1 which is not connected to board GND.
+         The button shorts BTN_RAW_A to BTN_COM_A when pressed (active-low). -->
+
+    <!-- BTN_IN_A — Debounced/conditioned button A signal from Schmitt trigger to U2 GPIO -->
+    <net code="12" name="BTN_IN_A">
+      <node ref="U3"   pin="3"/>   <!-- SN74LVC1G17 Schmitt trigger output Y -->
+      <node ref="U2"   pin="5"/>   <!-- STM32G031 PA0 / GPIO EXTI interrupt (BTN_IN_A) -->
+    </net>
+
+    <!-- BTN_RAW_B — Raw push button B contact (second button, direct to U2 internal Schmitt) -->
+    <net code="13" name="BTN_RAW_B">
+      <node ref="J2"   pin="4"/>   <!-- JST GH J2 pin 4: BTN_B normally-open contact -->
+      <node ref="R4"   pin="2"/>   <!-- BTN_B pull-up resistor (other end to V3V3) -->
+      <node ref="U2"   pin="6"/>   <!-- STM32G031 PA1 / GPIO EXTI (BTN_IN_B, uses internal Schmitt) -->
+    </net>
+
+    <!-- BTN_COM_B — Push button B common -->
+    <net code="14" name="BTN_COM_B">
+      <node ref="J2"   pin="3"/>   <!-- JST GH J2 pin 3: BTN_B common contact -->
+    </net>
+
+    <!-- ================================================================
+         BUTTON LED ILLUMINATION NETS
+         ================================================================ -->
+
+    <!-- BTN_LED_DRV — U2 GPIO output → Q2 gate (button LED drive command) -->
+    <net code="15" name="BTN_LED_DRV">
+      <node ref="U2"   pin="7"/>   <!-- STM32G031 PA2 / GPIO PWM output (BTN_LED_DRV) -->
+      <node ref="R6"   pin="1"/>   <!-- Q2 gate series resistor input -->
+    </net>
+
+    <!-- BTN_LED_GATE — After R6 to Q2 gate -->
+    <net code="16" name="BTN_LED_GATE">
+      <node ref="R6"   pin="2"/>   <!-- Q2 gate series resistor output -->
+      <node ref="Q2"   pin="1"/>   <!-- 2N7002 Q2 gate -->
+    </net>
+
+    <!-- BTN_LED_A — Q2 drain → R7 → J2 pin 5 (button LED anode) -->
+    <net code="17" name="BTN_LED_A">
+      <node ref="Q2"   pin="3"/>   <!-- 2N7002 Q2 drain (switched 3V3 supply for LED) -->
+      <node ref="R7"   pin="1"/>   <!-- Button LED current limit resistor input -->
+    </net>
+
+    <!-- BTN_LED_OUT — After R7, to J2 connector button LED anode -->
+    <net code="18" name="BTN_LED_OUT">
+      <node ref="R7"   pin="2"/>   <!-- Current limit resistor output -->
+      <node ref="J2"   pin="5"/>   <!-- JST GH J2 pin 5: BTN_LED anode to button illumination -->
+    </net>
+    <!-- Note: J2 pin 6 (BTN_LED_K) is cathode return, connected to GND net -->
+
+    <!-- ================================================================
+         WAIT LAMP DRIVE NETS
+         ================================================================ -->
+
+    <!-- WAIT_LAMP_DRV — U2 GPIO → Q1 gate (wait lamp switch command) -->
+    <net code="19" name="WAIT_LAMP_DRV">
+      <node ref="U2"   pin="8"/>   <!-- STM32G031 PA3 / GPIO output (WAIT_LAMP_DRV) -->
+      <node ref="R5"   pin="1"/>   <!-- Q1 gate series resistor input -->
+    </net>
+
+    <!-- WAIT_LAMP_GATE — After R5 to Q1 gate -->
+    <net code="20" name="WAIT_LAMP_GATE">
+      <node ref="R5"   pin="2"/>   <!-- Q1 gate series resistor output -->
+      <node ref="Q1"   pin="1"/>   <!-- 2N7002 Q1 gate -->
+    </net>
+
+    <!-- WAIT_LAMP — Q1 drain → D1 TVS → J3 pin 1 (wait lamp output) -->
+    <net code="21" name="WAIT_LAMP">
+      <node ref="Q1"   pin="3"/>   <!-- 2N7002 Q1 drain (switched 12V for lamp) -->
+      <node ref="D1"   pin="1"/>   <!-- SMBJ12A TVS anode (transient protection on output) -->
+      <node ref="J3"   pin="1"/>   <!-- JST GH J3 pin 1: WAIT_LAMP_OUT to lamp assembly -->
+    </net>
+    <!-- Note: J3 pin 2 WAIT_LAMP_RTN connected to GND net -->
+
+    <!-- ================================================================
+         PEDESTRIAN SIGNAL OUTPUT NETS
+         ================================================================ -->
+
+    <!-- PED_RED_PWM — U2 PWM GPIO output to R8 then J4 pin 3 -->
+    <net code="22" name="PED_RED_PWM">
+      <node ref="U2"   pin="15"/>  <!-- STM32G031 PA8 / TIM1_CH1 PWM output (PED_RED) -->
+      <node ref="R8"   pin="1"/>   <!-- PED_RED current limit resistor input -->
+    </net>
+
+    <!-- PED_RED_OUT — After R8 to J4 connector (ped red lamp signal) -->
+    <net code="23" name="PED_RED_OUT">
+      <node ref="R8"   pin="2"/>   <!-- Current limit resistor output -->
+      <node ref="J4"   pin="3"/>   <!-- JST GH J4 pin 3: PED_RED_OUT to signal head -->
+    </net>
+
+    <!-- PED_GREEN_PWM — U2 PWM GPIO output to R9 then J4 pin 4 -->
+    <net code="24" name="PED_GREEN_PWM">
+      <node ref="U2"   pin="16"/>  <!-- STM32G031 PA9 / TIM1_CH2 PWM output (PED_GREEN) -->
+      <node ref="R9"   pin="1"/>   <!-- PED_GREEN current limit resistor input -->
+    </net>
+
+    <!-- PED_GREEN_OUT — After R9 to J4 connector (ped green lamp signal) -->
+    <net code="25" name="PED_GREEN_OUT">
+      <node ref="R9"   pin="2"/>   <!-- Current limit resistor output -->
+      <node ref="J4"   pin="4"/>   <!-- JST GH J4 pin 4: PED_GREEN_OUT to signal head -->
+    </net>
+
+    <!-- ================================================================
+         AUDIO NETS (U2 → U4 PAM8008 → SP1 Speaker)
+         ================================================================ -->
+
+    <!-- AUDIO_PWM_P — U2 DAC/PWM positive output (BTL differential drive) -->
+    <net code="26" name="AUDIO_PWM_P">
+      <node ref="U2"   pin="13"/>  <!-- STM32G031 PB0 / TIM3_CH3 or DAC (AUDIO positive) -->
+      <node ref="C18"  pin="1"/>   <!-- AC coupling cap input -->
+    </net>
+
+    <!-- AUDIO_INP — After AC coupling cap → R10 → PAM8008 LINP -->
+    <net code="27" name="AUDIO_INP">
+      <node ref="C18"  pin="2"/>   <!-- AC coupling cap output -->
+      <node ref="R10"  pin="1"/>   <!-- Audio input bias resistor input -->
+    </net>
+
+    <!-- AUDIO_IN_LINP — After R10 to PAM8008 LINP pin -->
+    <net code="28" name="AUDIO_IN_LINP">
+      <node ref="R10"  pin="2"/>   <!-- Audio bias resistor output -->
+      <node ref="U4"   pin="1"/>   <!-- PAM8008 LINP (left channel non-inverting input) -->
+    </net>
+
+    <!-- AUDIO_IN_LINN — PAM8008 LINN pin connected via R11 to complement or mid-rail -->
+    <net code="29" name="AUDIO_IN_LINN">
+      <node ref="R11"  pin="2"/>   <!-- Audio complement bias resistor output -->
+      <node ref="U4"   pin="2"/>   <!-- PAM8008 LINN (left channel inverting input) -->
+    </net>
+    <!-- Note: for single-ended drive, R11 connects LINN to mid-rail (V3V3/2) or GND via resistor divider -->
+
+    <!-- AUDIO_INN_REF — R11 input from GND reference for LINN bias in single-ended mode -->
+    <net code="30" name="AUDIO_INN_REF">
+      <node ref="R11"  pin="1"/>   <!-- R11 bias resistor input (referenced to GND) -->
+    </net>
+
+    <!-- AUDIO_GAIN — PAM8008 GAIN pin to R12 (gain setting resistor to GND) -->
+    <net code="31" name="AUDIO_GAIN">
+      <node ref="U4"   pin="10"/>  <!-- PAM8008 GAIN pin -->
+      <node ref="R12"  pin="1"/>   <!-- GAIN set resistor input -->
+    </net>
+    <!-- Note: R12 other end on GND net; GAIN pin voltage sets amplifier gain -->
+
+    <!-- AUDIO_MUTE — U2 GPIO to PAM8008 MUTE pin (active-low mute, pull-up R20) -->
+    <net code="32" name="AUDIO_MUTE">
+      <node ref="U2"   pin="14"/>  <!-- STM32G031 PB1 / GPIO AUDIO_MUTE (active-low) -->
+      <node ref="R20"  pin="2"/>   <!-- MUTE pull-up resistor output -->
+      <node ref="U4"   pin="11"/>  <!-- PAM8008 MUTE pin (low = muted) -->
+    </net>
+
+    <!-- AUDIO_SD — PAM8008 SD (shutdown, active-low); tied to V3V3 for always-on -->
+    <net code="33" name="AUDIO_SD">
+      <node ref="U4"   pin="9"/>   <!-- PAM8008 SD pin (tied high for normal operation) -->
+    </net>
+    <!-- Note: AUDIO_SD net connects to V3V3 rail directly (no separate node listed as it joins V3V3) -->
+
+    <!-- AUDIO_OUT_P — PAM8008 LOVP → C13 → SP1 pin 1 (speaker positive) -->
+    <net code="34" name="AUDIO_OUT_P">
+      <node ref="U4"   pin="5"/>   <!-- PAM8008 LOVP (left output, BTL positive) -->
+      <node ref="C13"  pin="1"/>   <!-- AC coupling cap + -->
+    </net>
+
+    <!-- AUDIO_OUT_P_AC — After C13 AC coupling to SP1 -->
+    <net code="35" name="AUDIO_OUT_P_AC">
+      <node ref="C13"  pin="2"/>   <!-- AC coupling cap output -->
+      <node ref="SP1"  pin="1"/>   <!-- Speaker element pin 1 (positive) -->
+      <node ref="J3"   pin="3"/>   <!-- JST GH J3 pin 3: AUDIO_OUT_P to external speaker via J3 -->
+    </net>
+
+    <!-- AUDIO_OUT_N — PAM8008 LOVN → C14 → SP1 pin 2 (speaker negative, BTL) -->
+    <net code="36" name="AUDIO_OUT_N">
+      <node ref="U4"   pin="6"/>   <!-- PAM8008 LOVN (left output, BTL negative) -->
+      <node ref="C14"  pin="1"/>   <!-- AC coupling cap + -->
+    </net>
+
+    <!-- AUDIO_OUT_N_AC — After C14 AC coupling to SP1 return -->
+    <net code="37" name="AUDIO_OUT_N_AC">
+      <node ref="C14"  pin="2"/>   <!-- AC coupling cap output -->
+      <node ref="SP1"  pin="2"/>   <!-- Speaker element pin 2 (negative / return) -->
+      <node ref="J3"   pin="4"/>   <!-- JST GH J3 pin 4: AUDIO_OUT_N to external speaker return -->
+    </net>
+
+    <!-- ================================================================
+         TACTILE CONE SOLENOID NETS (U2 → U5 DRV8833 → TA1)
+         ================================================================ -->
+
+    <!-- TACT_AIN1 — U2 GPIO to R14 to DRV8833 AIN1 (H-bridge A forward control) -->
+    <net code="38" name="TACT_AIN1">
+      <node ref="U2"   pin="22"/>  <!-- STM32G031 PA15 / GPIO TACT_AIN1 -->
+      <node ref="R14"  pin="1"/>   <!-- DRV8833 AIN1 series resistor input -->
+    </net>
+
+    <!-- TACT_AIN1_OUT — After R14 to DRV8833 AIN1 -->
+    <net code="39" name="TACT_AIN1_OUT">
+      <node ref="R14"  pin="2"/>   <!-- AIN1 series resistor output -->
+      <node ref="U5"   pin="9"/>   <!-- DRV8833 AIN1 (H-bridge A input 1) -->
+    </net>
+
+    <!-- TACT_AIN2 — U2 GPIO to R15 to DRV8833 AIN2 (H-bridge A reverse control) -->
+    <net code="40" name="TACT_AIN2">
+      <node ref="U2"   pin="23"/>  <!-- STM32G031 PB3 / GPIO TACT_AIN2 -->
+      <node ref="R15"  pin="1"/>   <!-- DRV8833 AIN2 series resistor input -->
+    </net>
+
+    <!-- TACT_AIN2_OUT — After R15 to DRV8833 AIN2 -->
+    <net code="41" name="TACT_AIN2_OUT">
+      <node ref="R15"  pin="2"/>   <!-- AIN2 series resistor output -->
+      <node ref="U5"   pin="10"/>  <!-- DRV8833 AIN2 (H-bridge A input 2) -->
+    </net>
+
+    <!-- TACT_A — DRV8833 AOUT1 to D2 TVS to J4 pin 1 (solenoid terminal A) -->
+    <net code="42" name="TACT_A">
+      <node ref="U5"   pin="1"/>   <!-- DRV8833 AOUT1 (H-bridge A output 1) -->
+      <node ref="D2"   pin="1"/>   <!-- SMBJ12A TVS D2 anode (solenoid transient clamp) -->
+      <node ref="J4"   pin="1"/>   <!-- JST GH J4 pin 1: TACT_A to TA1 solenoid -->
+      <node ref="TA1"  pin="1"/>   <!-- Tactile solenoid connector pin 1 -->
+    </net>
+
+    <!-- TACT_B — DRV8833 AOUT2 to J4 pin 2 (solenoid terminal B) -->
+    <net code="43" name="TACT_B">
+      <node ref="U5"   pin="2"/>   <!-- DRV8833 AOUT2 (H-bridge A output 2) -->
+      <node ref="J4"   pin="2"/>   <!-- JST GH J4 pin 2: TACT_B to TA1 solenoid return -->
+      <node ref="TA1"  pin="2"/>   <!-- Tactile solenoid connector pin 2 -->
+    </net>
+
+    <!-- TACT_NSLEEP — DRV8833 nSLEEP pull-up R13 + U2 GPIO override -->
+    <net code="44" name="TACT_NSLEEP">
+      <node ref="R13"  pin="2"/>   <!-- nSLEEP pull-up output (to V3V3 at R13 pin 1) -->
+      <node ref="U5"   pin="8"/>   <!-- DRV8833 nSLEEP (low = low-power sleep) -->
+      <node ref="U2"   pin="24"/>  <!-- STM32G031 PB4 / GPIO TACT_NSLEEP (can pull low to sleep) -->
+    </net>
+
+    <!-- TACT_NFAULT — DRV8833 nFAULT open-drain, pull-up R19, to U2 GPIO for fault detection -->
+    <net code="45" name="TACT_NFAULT">
+      <node ref="U5"   pin="13"/>  <!-- DRV8833 nFAULT (open-drain, low = fault) -->
+      <node ref="R19"  pin="2"/>   <!-- nFAULT pull-up output (R19 pin 1 to V3V3) -->
+      <node ref="U2"   pin="25"/>  <!-- STM32G031 PB5 / GPIO EXTI interrupt (TACT_NFAULT) -->
+    </net>
+
+    <!-- ================================================================
+         FAULT STATUS LED NET
+         ================================================================ -->
+
+    <!-- FAULT_LED_DRV — U2 GPIO to R16 to on-board status LED (fault indicator) -->
+    <net code="46" name="FAULT_LED_DRV">
+      <node ref="U2"   pin="26"/>  <!-- STM32G031 PB6 / GPIO output (FAULT_LED_DRV) -->
+      <node ref="R16"  pin="1"/>   <!-- Status LED current limit resistor input -->
+    </net>
+
+    <!-- FAULT_LED_OUT — After R16 to LED anode (cathode on GND plane via footprint) -->
+    <net code="47" name="FAULT_LED_OUT">
+      <node ref="R16"  pin="2"/>   <!-- Status LED current limit resistor output -->
+    </net>
+    <!-- Note: On-board status LED anode on FAULT_LED_OUT; cathode directly to GND plane.
+         LED component not listed as separate comp; use TP pad or add LED1 ref if required. -->
+
+    <!-- ================================================================
+         MCU DEBUG / BOOT NETS
+         ================================================================ -->
+
+    <!-- SWDIO — STM32G031 SWDIO (PA13) debug interface data line -->
+    <net code="48" name="SWDIO">
+      <node ref="U2"   pin="20"/>  <!-- STM32G031 PA13 / SWDIO -->
+    </net>
+
+    <!-- SWCLK — STM32G031 SWCLK (PA14) debug interface clock -->
+    <net code="49" name="SWCLK">
+      <node ref="U2"   pin="21"/>  <!-- STM32G031 PA14 / SWCLK -->
+    </net>
+
+    <!-- NRST — STM32G031 hardware reset (active-low, pin 1) -->
+    <net code="50" name="NRST">
+      <node ref="U2"   pin="1"/>   <!-- STM32G031 NRST pin -->
+    </net>
+
+    <!-- BOOT0 — STM32G031 BOOT0 boot mode selection (pulled down by R17) -->
+    <net code="51" name="BOOT0">
+      <node ref="U2"   pin="4"/>   <!-- STM32G031 BOOT0 pin -->
+      <node ref="R17"  pin="1"/>   <!-- BOOT0 pull-down resistor input (other end to GND) -->
+    </net>
+
+  </nets>
+
+</export>
