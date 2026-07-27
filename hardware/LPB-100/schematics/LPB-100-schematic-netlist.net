@@ -1,0 +1,1126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<export version="E">
+  <design>
+    <source>LPB-100-SCH-001</source>
+    <date>2026-06-18</date>
+    <tool>KiCad 7.0</tool>
+    <sheet number="1" name="LPB-100 Power and Battery Board"/>
+  </design>
+  <components>
+    <comp ref="U1">
+      <value>BQ76952PFBR</value>
+      <description>16-series cell battery monitor and protection IC, TQFP-64</description>
+      <footprint>Texas_Instruments:TQFP-64_10x10mm_P0.5mm</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/bq76952.pdf</datasheet>
+      <fields>
+        <field name="MPN">BQ76952PFBR</field>
+        <field name="Manufacturer">Texas Instruments</field>
+      </fields>
+    </comp>
+    <comp ref="U2">
+      <value>BQ25798RTAT</value>
+      <description>MPPT bidirectional buck-boost battery charger, WQFN-40</description>
+      <footprint>Texas_Instruments:WQFN-40_5x5mm_P0.4mm</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/bq25798.pdf</datasheet>
+      <fields>
+        <field name="MPN">BQ25798RTAT</field>
+        <field name="Manufacturer">Texas Instruments</field>
+      </fields>
+    </comp>
+    <comp ref="U3">
+      <value>BQ28Z610DRZT</value>
+      <description>Impedance track fuel gauge, DSBGA-16</description>
+      <footprint>Texas_Instruments:DSBGA-16</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/bq28z610.pdf</datasheet>
+      <fields>
+        <field name="MPN">BQ28Z610DRZT</field>
+        <field name="Manufacturer">Texas Instruments</field>
+      </fields>
+    </comp>
+    <comp ref="U4">
+      <value>LTC4412HMS8</value>
+      <description>Low loss ideal diode ORing controller, MSOP-8, channel A</description>
+      <footprint>Analog_Devices:MSOP-8_3x3mm_P0.65mm</footprint>
+      <datasheet>https://www.analog.com/media/en/technical-documentation/data-sheets/4412fc.pdf</datasheet>
+      <fields>
+        <field name="MPN">LTC4412HMS8#PBF</field>
+        <field name="Manufacturer">Analog Devices (Linear Technology)</field>
+      </fields>
+    </comp>
+    <comp ref="U5">
+      <value>LTC4412HMS8</value>
+      <description>Low loss ideal diode ORing controller, MSOP-8, channel B</description>
+      <footprint>Analog_Devices:MSOP-8_3x3mm_P0.65mm</footprint>
+      <datasheet>https://www.analog.com/media/en/technical-documentation/data-sheets/4412fc.pdf</datasheet>
+      <fields>
+        <field name="MPN">LTC4412HMS8#PBF</field>
+        <field name="Manufacturer">Analog Devices (Linear Technology)</field>
+      </fields>
+    </comp>
+    <comp ref="U6">
+      <value>LMR54406XYFPR</value>
+      <description>6A synchronous step-down buck converter, WSON-10</description>
+      <footprint>Texas_Instruments:WSON-10_3x3mm_P0.5mm</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/lmr54406.pdf</datasheet>
+      <fields>
+        <field name="MPN">LMR54406XYFPR</field>
+        <field name="Manufacturer">Texas Instruments</field>
+      </fields>
+    </comp>
+    <comp ref="U7">
+      <value>TPS7A4700RGWT</value>
+      <description>Low-noise 1A LDO regulator 5V post-regulation, VQFN-20</description>
+      <footprint>Texas_Instruments:VQFN-20_4x4mm_P0.65mm</footprint>
+      <datasheet>https://www.ti.com/lit/ds/symlink/tps7a47.pdf</datasheet>
+      <fields>
+        <field name="MPN">TPS7A4700RGWT</field>
+        <field name="Manufacturer">Texas Instruments</field>
+      </fields>
+    </comp>
+    <comp ref="U8">
+      <value>PCT2075DP</value>
+      <description>I2C bus temperature sensor, SOIC-8, internal board temp monitoring</description>
+      <footprint>NXP:SOIC-8_3.9x4.9mm_P1.27mm</footprint>
+      <datasheet>https://www.nxp.com/docs/en/data-sheet/PCT2075.pdf</datasheet>
+      <fields>
+        <field name="MPN">PCT2075DP,118</field>
+        <field name="Manufacturer">NXP Semiconductors</field>
+      </fields>
+    </comp>
+    <comp ref="U9">
+      <value>PSMN1R4-40YLD</value>
+      <description>N-channel 40V MOSFET reverse polarity protection, LFPAK88</description>
+      <footprint>Nexperia:LFPAK88_5x6mm</footprint>
+      <datasheet>https://assets.nexperia.com/documents/data-sheet/PSMN1R4-40YLD.pdf</datasheet>
+      <fields>
+        <field name="MPN">PSMN1R4-40YLD</field>
+        <field name="Manufacturer">Nexperia</field>
+      </fields>
+    </comp>
+    <comp ref="D1">
+      <value>SMAJ40CA</value>
+      <description>40V bidirectional TVS diode, input transient protection</description>
+      <footprint>Diodes_SMD:D_SMA</footprint>
+      <datasheet>https://www.vishay.com/docs/88351/smaj.pdf</datasheet>
+      <fields>
+        <field name="MPN">SMAJ40CA</field>
+        <field name="Manufacturer">Vishay</field>
+      </fields>
+    </comp>
+    <comp ref="D2">
+      <value>SS34</value>
+      <description>3A 40V Schottky diode, solar path</description>
+      <footprint>Diodes_SMD:D_SMC</footprint>
+      <datasheet>https://www.vishay.com/docs/88730/ss34.pdf</datasheet>
+      <fields>
+        <field name="MPN">SS34</field>
+        <field name="Manufacturer">Vishay</field>
+      </fields>
+    </comp>
+    <comp ref="D3">
+      <value>SS34</value>
+      <description>3A 40V Schottky diode, charger path OR</description>
+      <footprint>Diodes_SMD:D_SMC</footprint>
+      <datasheet>https://www.vishay.com/docs/88730/ss34.pdf</datasheet>
+      <fields>
+        <field name="MPN">SS34</field>
+        <field name="Manufacturer">Vishay</field>
+      </fields>
+    </comp>
+    <comp ref="D4">
+      <value>SS34</value>
+      <description>3A 40V Schottky diode, boost output freewheeling</description>
+      <footprint>Diodes_SMD:D_SMC</footprint>
+      <datasheet>https://www.vishay.com/docs/88730/ss34.pdf</datasheet>
+      <fields>
+        <field name="MPN">SS34</field>
+        <field name="Manufacturer">Vishay</field>
+      </fields>
+    </comp>
+    <comp ref="L1">
+      <value>HCMA0703-5R6-R</value>
+      <description>5.6uH 6A power inductor, TDK/Bourns, buck converter</description>
+      <footprint>Inductor_SMD:L_7.3x7.3mm_H4.5mm</footprint>
+      <datasheet>https://www.bourns.com/docs/Product-Datasheets/HCMA0703.pdf</datasheet>
+      <fields>
+        <field name="MPN">HCMA0703-5R6-R</field>
+        <field name="Manufacturer">Bourns</field>
+      </fields>
+    </comp>
+    <comp ref="F1">
+      <value>40A_MIDI</value>
+      <description>40A MIDI/AMI blade fuse, battery input protection</description>
+      <footprint>Fuse:Fuseholder_Blade_MIDI_Littelfuse_0297</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="MPN">0297040.ZXNV</field>
+        <field name="Manufacturer">Littelfuse</field>
+      </fields>
+    </comp>
+    <comp ref="R1">
+      <value>10K</value>
+      <description>MPPT voltage divider top, solar VSOLAR sense to BQ25798 VAC1</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R2">
+      <value>2K2</value>
+      <description>MPPT voltage divider bottom, VSOLAR sense</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R3">
+      <value>10K</value>
+      <description>BQ25798 ICHG set resistor</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R4">
+      <value>4K7</value>
+      <description>I2C SDA pull-up, SMBus</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R5">
+      <value>4K7</value>
+      <description>I2C SCL pull-up, SMBus</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R6">
+      <value>100K</value>
+      <description>Buck feedback divider top, V12_MAIN sense</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R7">
+      <value>10K</value>
+      <description>Buck feedback divider bottom, V12_MAIN sense</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R8">
+      <value>100K</value>
+      <description>LDO feedback top resistor, V5_CLEAN adjust</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R9">
+      <value>16K5</value>
+      <description>LDO feedback bottom resistor, V5_CLEAN adjust</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R10">
+      <value>10K</value>
+      <description>U9 gate pull-down for reverse polarity FET</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R11">
+      <value>10K</value>
+      <description>PCT2075 address A0 tie to GND</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R12">
+      <value>10K</value>
+      <description>PCT2075 address A1 tie to GND</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R13">
+      <value>10K</value>
+      <description>PCT2075 address A2 tie to GND</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R14">
+      <value>10K</value>
+      <description>ALERT_BMS pull-up to V5_LOGIC</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R15">
+      <value>10K</value>
+      <description>BQ25798 CE pin pull-up to V5_LOGIC</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R16">
+      <value>10K</value>
+      <description>BQ25798 ILIM_HIZ pin resistor to GND</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R17">
+      <value>100K</value>
+      <description>VBATT_RAW voltage divider top, monitor sense</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R18">
+      <value>10K</value>
+      <description>VBATT_RAW voltage divider bottom</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R19">
+      <value>47K</value>
+      <description>LTC4412 CTL pull-up for ideal diode control, U4</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R20">
+      <value>47K</value>
+      <description>LTC4412 CTL pull-up for ideal diode control, U5</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R21">
+      <value>0R1</value>
+      <description>Battery current sense shunt, 100mOhm 1W 2512</description>
+      <footprint>Resistor_SMD:R_2512_6332Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="Tolerance">1%</field>
+        <field name="Power">1W</field>
+      </fields>
+    </comp>
+    <comp ref="R22">
+      <value>10K</value>
+      <description>BQ25798 TS thermistor pull-up</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R23">
+      <value>10K</value>
+      <description>BQ76952 REGOUT filter</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R24">
+      <value>100R</value>
+      <description>BQ76952 ALERT series resistor</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R25">
+      <value>10K</value>
+      <description>BQ28Z610 GPAI pull-up</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R26">
+      <value>100R</value>
+      <description>Buck EN series resistor</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R27">
+      <value>10K</value>
+      <description>Buck PGOOD pull-up to V5_LOGIC</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R28">
+      <value>10K</value>
+      <description>BQ25798 PG pull-up to V5_LOGIC</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R29">
+      <value>10K</value>
+      <description>BQ25798 INT pull-up to V5_LOGIC</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="R30">
+      <value>10K</value>
+      <description>BQ25798 STAT pull-up to V5_LOGIC</description>
+      <footprint>Resistor_SMD:R_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Tolerance">1%</field></fields>
+    </comp>
+    <comp ref="C1">
+      <value>100uF_50V</value>
+      <description>Bulk electrolytic input cap, Anderson SB50 battery terminal</description>
+      <footprint>Capacitor_THT:CP_Radial_D10.0mm_P5.00mm</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="Voltage">50V</field>
+        <field name="Type">Aluminum Electrolytic</field>
+      </fields>
+    </comp>
+    <comp ref="C2">
+      <value>100uF_50V</value>
+      <description>Bulk electrolytic input cap, redundant for battery input</description>
+      <footprint>Capacitor_THT:CP_Radial_D10.0mm_P5.00mm</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="Voltage">50V</field>
+        <field name="Type">Aluminum Electrolytic</field>
+      </fields>
+    </comp>
+    <comp ref="C3">
+      <value>10uF</value>
+      <description>VBATT_PROT output bulk bypass, 1210</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">50V</field></fields>
+    </comp>
+    <comp ref="C4">
+      <value>100nF</value>
+      <description>VBATT_PROT local bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">50V</field></fields>
+    </comp>
+    <comp ref="C5">
+      <value>100uF_25V</value>
+      <description>VSOLAR input bulk cap</description>
+      <footprint>Capacitor_THT:CP_Radial_D8.0mm_P3.50mm</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="Voltage">25V</field>
+        <field name="Type">Aluminum Electrolytic</field>
+      </fields>
+    </comp>
+    <comp ref="C6">
+      <value>100nF</value>
+      <description>VSOLAR local bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C7">
+      <value>10uF</value>
+      <description>BQ25798 VSYS output bypass</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C8">
+      <value>100nF</value>
+      <description>BQ25798 VSYS local bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C9">
+      <value>100uF_25V</value>
+      <description>V12_MAIN output bulk cap</description>
+      <footprint>Capacitor_THT:CP_Radial_D8.0mm_P3.50mm</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="Voltage">25V</field>
+        <field name="Type">Aluminum Electrolytic</field>
+      </fields>
+    </comp>
+    <comp ref="C10">
+      <value>10uF</value>
+      <description>V12_MAIN output bypass, 1210</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C11">
+      <value>100nF</value>
+      <description>Buck VIN bypass, U6</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C12">
+      <value>10uF</value>
+      <description>Buck VIN bulk bypass, U6</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C13">
+      <value>22uF</value>
+      <description>Buck VOUT bulk bypass, 1210</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C14">
+      <value>100nF</value>
+      <description>Buck BOOT capacitor</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C15">
+      <value>100nF</value>
+      <description>V5_LOGIC bypass U6 output</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C16">
+      <value>10uF</value>
+      <description>V5_LOGIC bulk bypass</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C17">
+      <value>100nF</value>
+      <description>LDO U7 IN bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C18">
+      <value>10uF</value>
+      <description>V5_CLEAN output bulk bypass</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C19">
+      <value>100nF</value>
+      <description>V5_CLEAN local bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C20">
+      <value>100nF</value>
+      <description>DVCC bypass U1 BQ76952</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C21">
+      <value>1uF</value>
+      <description>DVCC bulk bypass U1</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C22">
+      <value>100nF</value>
+      <description>REGOUT bypass U1</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C23">
+      <value>100nF</value>
+      <description>REGSRC bypass U1</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C24">
+      <value>100nF</value>
+      <description>U3 BQ28Z610 PACK+ bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">50V</field></fields>
+    </comp>
+    <comp ref="C25">
+      <value>100nF</value>
+      <description>U8 PCT2075 VCC bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C26">
+      <value>100nF</value>
+      <description>I2C bus decoupling cap</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C27">
+      <value>100nF</value>
+      <description>U2 BQ25798 PMID bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C28">
+      <value>10uF</value>
+      <description>U2 BQ25798 VBAT output bypass</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C29">
+      <value>100nF</value>
+      <description>General PGND decoupling near U6</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C30">
+      <value>1uF</value>
+      <description>LDO NR/SS capacitor U7</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C31">
+      <value>100nF</value>
+      <description>LDO BYPASS cap U7</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C32">
+      <value>10uF</value>
+      <description>VCHARGE input bypass</description>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C33">
+      <value>100nF</value>
+      <description>VCHARGE bypass local</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C34">
+      <value>100nF</value>
+      <description>BQ76952 cell sense filter C, stacks 1-4</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C35">
+      <value>100nF</value>
+      <description>BQ76952 cell sense filter C, stacks 5-8</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C36">
+      <value>100nF</value>
+      <description>BQ76952 cell sense filter C, stacks 9-12</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C37">
+      <value>100nF</value>
+      <description>BQ76952 cell sense filter C, stacks 13-16</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C38">
+      <value>100nF</value>
+      <description>V12_MAIN extra bypass</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">25V</field></fields>
+    </comp>
+    <comp ref="C39">
+      <value>100nF</value>
+      <description>General bypass near J4 output connector</description>
+      <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="C40">
+      <value>4.7uF</value>
+      <description>V5_LOGIC extra bulk bypass</description>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields><field name="Voltage">10V</field></fields>
+    </comp>
+    <comp ref="J1">
+      <value>Anderson_SB50_Battery</value>
+      <description>Anderson SB50 2-pin connector, LiFePO4 battery pack</description>
+      <footprint>Connector_Anderson:SB50_2pin_Vertical</footprint>
+      <datasheet>https://www.andersonpower.com/us/en/products/sb50.html</datasheet>
+      <fields>
+        <field name="MPN">SB50</field>
+        <field name="Manufacturer">Anderson Power Products</field>
+      </fields>
+    </comp>
+    <comp ref="J2">
+      <value>Anderson_SB50_Solar</value>
+      <description>Anderson SB50 2-pin connector, solar panel input</description>
+      <footprint>Connector_Anderson:SB50_2pin_Vertical</footprint>
+      <datasheet>https://www.andersonpower.com/us/en/products/sb50.html</datasheet>
+      <fields>
+        <field name="MPN">SB50</field>
+        <field name="Manufacturer">Anderson Power Products</field>
+      </fields>
+    </comp>
+    <comp ref="J3">
+      <value>Connector_3P</value>
+      <description>3-pin connector, mains charger input (+VCHARGE, GND, PE)</description>
+      <footprint>TE_Connectivity:TE_MTA-100_3pin_Header</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="MPN">640456-3</field>
+        <field name="Manufacturer">TE Connectivity</field>
+      </fields>
+    </comp>
+    <comp ref="J4">
+      <value>MiniFit_8P</value>
+      <description>Molex MiniFit Jr 8-pin, regulated output bus to LSO-100 and LCU</description>
+      <footprint>Molex:Molex_Minifit-Jr_5557-08R_2x04_P4.20mm_Vertical</footprint>
+      <datasheet>https://www.molex.com/en-us/products/part-detail/0039301080</datasheet>
+      <fields>
+        <field name="MPN">0039301080</field>
+        <field name="Manufacturer">Molex</field>
+      </fields>
+    </comp>
+    <comp ref="J5">
+      <value>MiniFit_4P</value>
+      <description>Molex MiniFit Jr 4-pin, CAN and I2C telemetry to LCU</description>
+      <footprint>Molex:Molex_Minifit-Jr_5557-04R_1x04_P4.20mm_Vertical</footprint>
+      <datasheet>https://www.molex.com/en-us/products/part-detail/0039301040</datasheet>
+      <fields>
+        <field name="MPN">0039301040</field>
+        <field name="Manufacturer">Molex</field>
+      </fields>
+    </comp>
+  </components>
+  <nets>
+    <net code="1" name="VBATT_RAW">
+      <node ref="J1" pin="1"/>
+      <node ref="F1" pin="1"/>
+      <node ref="U9" pin="D"/>
+      <node ref="D1" pin="A"/>
+      <node ref="C1" pin="1"/>
+      <node ref="C2" pin="1"/>
+      <node ref="R17" pin="1"/>
+    </net>
+    <net code="2" name="VBATT_FUSED">
+      <node ref="F1" pin="2"/>
+      <node ref="U9" pin="G"/>
+      <node ref="R10" pin="1"/>
+      <node ref="C3" pin="1"/>
+      <node ref="C4" pin="1"/>
+    </net>
+    <net code="3" name="VBATT_PROT">
+      <node ref="U9" pin="S1"/>
+      <node ref="U9" pin="S2"/>
+      <node ref="U1" pin="VCELL16"/>
+      <node ref="U2" pin="VBAT"/>
+      <node ref="U3" pin="PACK+"/>
+      <node ref="R21" pin="1"/>
+      <node ref="C24" pin="1"/>
+      <node ref="C28" pin="1"/>
+    </net>
+    <net code="4" name="PACK_MINUS">
+      <node ref="J1" pin="2"/>
+      <node ref="R21" pin="2"/>
+      <node ref="U1" pin="VSS"/>
+      <node ref="U3" pin="PACK-"/>
+    </net>
+    <net code="5" name="VSOLAR">
+      <node ref="J2" pin="1"/>
+      <node ref="D2" pin="A"/>
+      <node ref="U2" pin="VAC1"/>
+      <node ref="U4" pin="VIN"/>
+      <node ref="C5" pin="1"/>
+      <node ref="C6" pin="1"/>
+      <node ref="R1" pin="1"/>
+    </net>
+    <net code="6" name="VSOLAR_SENSE">
+      <node ref="R1" pin="2"/>
+      <node ref="R2" pin="1"/>
+    </net>
+    <net code="7" name="VCHARGE">
+      <node ref="J3" pin="1"/>
+      <node ref="D3" pin="A"/>
+      <node ref="U2" pin="VAC2"/>
+      <node ref="U5" pin="VIN"/>
+      <node ref="C32" pin="1"/>
+      <node ref="C33" pin="1"/>
+    </net>
+    <net code="8" name="PMID">
+      <node ref="U2" pin="PMID"/>
+      <node ref="C27" pin="1"/>
+      <node ref="D4" pin="K"/>
+    </net>
+    <net code="9" name="VSYS">
+      <node ref="U2" pin="VSYS"/>
+      <node ref="U4" pin="VOUT"/>
+      <node ref="U5" pin="VOUT"/>
+      <node ref="U6" pin="VIN"/>
+      <node ref="C7" pin="1"/>
+      <node ref="C8" pin="1"/>
+      <node ref="C11" pin="1"/>
+      <node ref="C12" pin="1"/>
+    </net>
+    <net code="10" name="SW_NODE">
+      <node ref="U6" pin="SW"/>
+      <node ref="L1" pin="1"/>
+    </net>
+    <net code="11" name="V12_MAIN">
+      <node ref="L1" pin="2"/>
+      <node ref="U6" pin="VOUT"/>
+      <node ref="J4" pin="1"/>
+      <node ref="J4" pin="2"/>
+      <node ref="R6" pin="1"/>
+      <node ref="C9" pin="1"/>
+      <node ref="C10" pin="1"/>
+      <node ref="C38" pin="1"/>
+    </net>
+    <net code="12" name="BUCK_FB">
+      <node ref="R6" pin="2"/>
+      <node ref="R7" pin="1"/>
+      <node ref="U6" pin="FB"/>
+    </net>
+    <net code="13" name="V5_LOGIC">
+      <node ref="U6" pin="PH"/>
+      <node ref="U7" pin="IN"/>
+      <node ref="R4" pin="1"/>
+      <node ref="R5" pin="1"/>
+      <node ref="R14" pin="1"/>
+      <node ref="R15" pin="1"/>
+      <node ref="R22" pin="1"/>
+      <node ref="R25" pin="1"/>
+      <node ref="R26" pin="1"/>
+      <node ref="R27" pin="1"/>
+      <node ref="R28" pin="1"/>
+      <node ref="R29" pin="1"/>
+      <node ref="R30" pin="1"/>
+      <node ref="C15" pin="1"/>
+      <node ref="C16" pin="1"/>
+      <node ref="C17" pin="1"/>
+      <node ref="C39" pin="1"/>
+      <node ref="C40" pin="1"/>
+      <node ref="J4" pin="3"/>
+    </net>
+    <net code="14" name="V5_CLEAN">
+      <node ref="U7" pin="OUT"/>
+      <node ref="U8" pin="VCC"/>
+      <node ref="C18" pin="1"/>
+      <node ref="C19" pin="1"/>
+      <node ref="J4" pin="4"/>
+    </net>
+    <net code="15" name="LDO_FB">
+      <node ref="U7" pin="FB"/>
+      <node ref="R8" pin="2"/>
+      <node ref="R9" pin="1"/>
+    </net>
+    <net code="16" name="LDO_NR_SS">
+      <node ref="U7" pin="NR_SS"/>
+      <node ref="C30" pin="1"/>
+    </net>
+    <net code="17" name="LDO_BYPASS">
+      <node ref="U7" pin="BYPASS"/>
+      <node ref="C31" pin="1"/>
+    </net>
+    <net code="18" name="DVCC">
+      <node ref="U1" pin="DVCC"/>
+      <node ref="C20" pin="1"/>
+      <node ref="C21" pin="1"/>
+    </net>
+    <net code="19" name="REGOUT">
+      <node ref="U1" pin="REGOUT"/>
+      <node ref="R23" pin="1"/>
+      <node ref="C22" pin="1"/>
+    </net>
+    <net code="20" name="REGSRC">
+      <node ref="U1" pin="REGSRC"/>
+      <node ref="R23" pin="2"/>
+      <node ref="C23" pin="1"/>
+    </net>
+    <net code="21" name="BMS_LD">
+      <node ref="U1" pin="LD"/>
+    </net>
+    <net code="22" name="BMS_CHGEN">
+      <node ref="U1" pin="CHGEN"/>
+    </net>
+    <net code="23" name="BMS_DSGN">
+      <node ref="U1" pin="DSGN"/>
+    </net>
+    <net code="24" name="ALERT_BMS">
+      <node ref="U1" pin="ALERT"/>
+      <node ref="R14" pin="2"/>
+      <node ref="R24" pin="1"/>
+      <node ref="J5" pin="3"/>
+    </net>
+    <net code="25" name="I2C_SDA">
+      <node ref="U1" pin="SDA"/>
+      <node ref="U2" pin="SDA"/>
+      <node ref="U3" pin="SDA"/>
+      <node ref="U8" pin="SDA"/>
+      <node ref="R4" pin="2"/>
+      <node ref="J5" pin="1"/>
+      <node ref="C26" pin="1"/>
+    </net>
+    <net code="26" name="I2C_SCL">
+      <node ref="U1" pin="SCL"/>
+      <node ref="U2" pin="SCL"/>
+      <node ref="U3" pin="SCL"/>
+      <node ref="U8" pin="SCL"/>
+      <node ref="R5" pin="2"/>
+      <node ref="J5" pin="2"/>
+    </net>
+    <net code="27" name="VCELL1">
+      <node ref="U1" pin="VCELL1"/>
+      <node ref="C34" pin="1"/>
+    </net>
+    <net code="28" name="VCELL2">
+      <node ref="U1" pin="VCELL2"/>
+    </net>
+    <net code="29" name="VCELL3">
+      <node ref="U1" pin="VCELL3"/>
+    </net>
+    <net code="30" name="VCELL4">
+      <node ref="U1" pin="VCELL4"/>
+    </net>
+    <net code="31" name="VCELL5">
+      <node ref="U1" pin="VCELL5"/>
+      <node ref="C35" pin="1"/>
+    </net>
+    <net code="32" name="VCELL6">
+      <node ref="U1" pin="VCELL6"/>
+    </net>
+    <net code="33" name="VCELL7">
+      <node ref="U1" pin="VCELL7"/>
+    </net>
+    <net code="34" name="VCELL8">
+      <node ref="U1" pin="VCELL8"/>
+    </net>
+    <net code="35" name="VCELL9">
+      <node ref="U1" pin="VCELL9"/>
+      <node ref="C36" pin="1"/>
+    </net>
+    <net code="36" name="VCELL10">
+      <node ref="U1" pin="VCELL10"/>
+    </net>
+    <net code="37" name="VCELL11">
+      <node ref="U1" pin="VCELL11"/>
+    </net>
+    <net code="38" name="VCELL12">
+      <node ref="U1" pin="VCELL12"/>
+    </net>
+    <net code="39" name="VCELL13">
+      <node ref="U1" pin="VCELL13"/>
+      <node ref="C37" pin="1"/>
+    </net>
+    <net code="40" name="VCELL14">
+      <node ref="U1" pin="VCELL14"/>
+    </net>
+    <net code="41" name="VCELL15">
+      <node ref="U1" pin="VCELL15"/>
+    </net>
+    <net code="42" name="GND">
+      <node ref="J1" pin="2"/>
+      <node ref="J2" pin="2"/>
+      <node ref="J3" pin="2"/>
+      <node ref="J4" pin="5"/>
+      <node ref="J4" pin="6"/>
+      <node ref="J4" pin="7"/>
+      <node ref="J4" pin="8"/>
+      <node ref="J5" pin="4"/>
+      <node ref="R2" pin="2"/>
+      <node ref="R7" pin="2"/>
+      <node ref="R9" pin="2"/>
+      <node ref="R10" pin="2"/>
+      <node ref="R11" pin="2"/>
+      <node ref="R12" pin="2"/>
+      <node ref="R13" pin="2"/>
+      <node ref="R16" pin="2"/>
+      <node ref="R18" pin="2"/>
+      <node ref="C1" pin="2"/>
+      <node ref="C2" pin="2"/>
+      <node ref="C3" pin="2"/>
+      <node ref="C4" pin="2"/>
+      <node ref="C5" pin="2"/>
+      <node ref="C6" pin="2"/>
+      <node ref="C20" pin="2"/>
+      <node ref="C21" pin="2"/>
+      <node ref="C22" pin="2"/>
+      <node ref="C23" pin="2"/>
+      <node ref="C24" pin="2"/>
+      <node ref="C25" pin="2"/>
+      <node ref="C26" pin="2"/>
+      <node ref="C34" pin="2"/>
+      <node ref="C35" pin="2"/>
+      <node ref="C36" pin="2"/>
+      <node ref="C37" pin="2"/>
+      <node ref="U8" pin="GND"/>
+      <node ref="U8" pin="A0"/>
+      <node ref="U8" pin="A1"/>
+      <node ref="U8" pin="A2"/>
+    </net>
+    <net code="43" name="PGND">
+      <node ref="U6" pin="GND"/>
+      <node ref="U7" pin="PGND"/>
+      <node ref="U7" pin="AGND"/>
+      <node ref="U2" pin="PGND"/>
+      <node ref="D1" pin="K"/>
+      <node ref="D2" pin="K"/>
+      <node ref="D3" pin="K"/>
+      <node ref="D4" pin="A"/>
+      <node ref="R2" pin="2"/>
+      <node ref="C7" pin="2"/>
+      <node ref="C8" pin="2"/>
+      <node ref="C9" pin="2"/>
+      <node ref="C10" pin="2"/>
+      <node ref="C11" pin="2"/>
+      <node ref="C12" pin="2"/>
+      <node ref="C13" pin="2"/>
+      <node ref="C14" pin="2"/>
+      <node ref="C15" pin="2"/>
+      <node ref="C16" pin="2"/>
+      <node ref="C17" pin="2"/>
+      <node ref="C18" pin="2"/>
+      <node ref="C19" pin="2"/>
+      <node ref="C27" pin="2"/>
+      <node ref="C28" pin="2"/>
+      <node ref="C29" pin="2"/>
+      <node ref="C30" pin="2"/>
+      <node ref="C31" pin="2"/>
+      <node ref="C32" pin="2"/>
+      <node ref="C33" pin="2"/>
+      <node ref="C38" pin="2"/>
+      <node ref="C39" pin="2"/>
+      <node ref="C40" pin="2"/>
+    </net>
+    <net code="44" name="CAN_H">
+      <node ref="J5" pin="1"/>
+    </net>
+    <net code="45" name="CAN_L">
+      <node ref="J5" pin="2"/>
+    </net>
+    <net code="46" name="BUCK_EN">
+      <node ref="U6" pin="EN"/>
+      <node ref="R26" pin="2"/>
+    </net>
+    <net code="47" name="BUCK_SS">
+      <node ref="U6" pin="SS"/>
+    </net>
+    <net code="48" name="BUCK_PGOOD">
+      <node ref="U6" pin="PGOOD"/>
+      <node ref="R27" pin="2"/>
+    </net>
+    <net code="49" name="BUCK_BOOT">
+      <node ref="U6" pin="BOOT"/>
+      <node ref="C14" pin="1"/>
+    </net>
+    <net code="50" name="BUCK_AVIN">
+      <node ref="U6" pin="AVIN"/>
+    </net>
+    <net code="51" name="BQ25798_ICHG">
+      <node ref="U2" pin="ICHG"/>
+      <node ref="R3" pin="1"/>
+    </net>
+    <net code="52" name="BQ25798_CE">
+      <node ref="U2" pin="CE"/>
+      <node ref="R15" pin="2"/>
+    </net>
+    <net code="53" name="BQ25798_PG">
+      <node ref="U2" pin="PG"/>
+      <node ref="R28" pin="2"/>
+    </net>
+    <net code="54" name="BQ25798_INT">
+      <node ref="U2" pin="INT"/>
+      <node ref="R29" pin="2"/>
+    </net>
+    <net code="55" name="BQ25798_STAT1">
+      <node ref="U2" pin="STAT1"/>
+      <node ref="R30" pin="2"/>
+    </net>
+    <net code="56" name="BQ25798_ILIM">
+      <node ref="U2" pin="ILIM_HIZ"/>
+      <node ref="R16" pin="1"/>
+    </net>
+    <net code="57" name="BQ25798_TS">
+      <node ref="U2" pin="TS"/>
+      <node ref="R22" pin="2"/>
+    </net>
+    <net code="58" name="BQ28Z610_GPAI">
+      <node ref="U3" pin="GPAI"/>
+      <node ref="R25" pin="2"/>
+    </net>
+    <net code="59" name="BQ28Z610_BTP_INT">
+      <node ref="U3" pin="BTP_INT"/>
+    </net>
+    <net code="60" name="PCT2075_OS">
+      <node ref="U8" pin="OS"/>
+    </net>
+    <net code="61" name="U4_CTL">
+      <node ref="U4" pin="CTL"/>
+      <node ref="R19" pin="2"/>
+    </net>
+    <net code="62" name="U5_CTL">
+      <node ref="U5" pin="CTL"/>
+      <node ref="R20" pin="2"/>
+    </net>
+    <net code="63" name="U4_STAT">
+      <node ref="U4" pin="STAT"/>
+    </net>
+    <net code="64" name="U5_STAT">
+      <node ref="U5" pin="STAT"/>
+    </net>
+    <net code="65" name="U4_SENSE">
+      <node ref="U4" pin="SENSE"/>
+    </net>
+    <net code="66" name="U5_SENSE">
+      <node ref="U5" pin="SENSE"/>
+    </net>
+    <net code="67" name="R19_VCC">
+      <node ref="R19" pin="1"/>
+    </net>
+    <net code="68" name="R20_VCC">
+      <node ref="R20" pin="1"/>
+    </net>
+    <net code="69" name="VBATT_MON">
+      <node ref="R17" pin="2"/>
+      <node ref="R18" pin="1"/>
+    </net>
+    <net code="70" name="R3_GND">
+      <node ref="R3" pin="2"/>
+    </net>
+    <net code="71" name="R8_TOP">
+      <node ref="R8" pin="1"/>
+    </net>
+    <net code="72" name="ALERT_SERIES">
+      <node ref="R24" pin="2"/>
+    </net>
+    <net code="73" name="SHIELD_PE">
+      <node ref="J3" pin="3"/>
+    </net>
+    <net code="74" name="U4_GND">
+      <node ref="U4" pin="GND"/>
+    </net>
+    <net code="75" name="U5_GND">
+      <node ref="U5" pin="GND"/>
+    </net>
+  </nets>
+</export>

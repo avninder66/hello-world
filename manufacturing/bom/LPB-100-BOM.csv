@@ -1,0 +1,26 @@
+Item,Ref_Des,Qty,Description,Value,Manufacturer,MPN,Mouser_PN,Package,Notes
+1,U1,1,16S Battery Monitor and Protector CRC SPI/I2C 4.2A gate drive,BQ76952PFBR,Texas Instruments,BQ76952PFBR,595-BQ76952PFBR,TQFP-64,Main battery cell monitor and protection IC - monitors all cell voltages/temps/protection
+2,U2,1,Bidirectional Battery Charger MPPT Solar 3-32V Input 5A,BQ25798RTAT,Texas Instruments,BQ25798RTAT,595-BQ25798RTAT,WQFN-40,Solar/charger MPPT controller and bidirectional charging IC
+3,U3,1,Impedance Track Fuel Gauge SMBus SBS compliant,BQ28Z610DRZT,Texas Instruments,BQ28Z610DRZT,595-BQ28Z610DRZT,DSBGA-16,Battery state-of-charge and state-of-health fuel gauge
+4,U4,1,PowerPath Ideal Diode ORing Controller low-loss,LTC4412HMS8#PBF,Analog Devices / Linear Technology,LTC4412HMS8#PBF,584-LTC4412HMS8PBF,MSOP-8,PowerPath controller for supply ORing - main input channel
+5,U5,1,PowerPath Ideal Diode ORing Controller low-loss,LTC4412HMS8#PBF,Analog Devices / Linear Technology,LTC4412HMS8#PBF,584-LTC4412HMS8PBF,MSOP-8,PowerPath controller for supply ORing - battery backup channel
+6,U6,1,6A 42V Synchronous Step-Down Buck Regulator,LMR54406XYFPR,Texas Instruments,LMR54406XYFPR,,WQFN-14,Main 12V to 5V synchronous buck converter for board power
+7,U7,1,5V 1A Ultra-Low Noise LDO Regulator PSRR 72dB,TPS7A4700RGWT,Texas Instruments,TPS7A4700RGWT,595-TPS7A4700RGWT,QFN-20,Post-regulation LDO for ultra-clean 5V analog supply rail
+8,U8,1,I2C Temperature Sensor ±1°C Accuracy,PCT2075DP/118,NXP Semiconductors,PCT2075DP/118,771-PCT2075DP118,SOIC-8,Board/battery temperature monitoring for thermal management
+9,U9,1,N-Channel 40V 100A MOSFET LFPAK88 Low RDS(on),PSMN1R4-40YLD,Nexperia,PSMN1R4-40YLD,771-PSMN1R440YLD,LFPAK88,Reverse polarity protection MOSFET on main power input
+10,D1,1,40V 1500W Bidirectional TVS Diode Load Dump Protection,SMAJ40CA-E3/61,Vishay,SMAJ40CA-E3/61,625-SMAJ40CA-E3/61,SMA,Input load dump and reverse transient protection
+11,D2,1,Schottky Rectifier 3A 40V,SS34,ON Semiconductor,SS34,863-SS34,SMA,Reverse protection and freewheeling diode
+12,D3,1,Schottky Rectifier 3A 40V,SS34,ON Semiconductor,SS34,863-SS34,SMA,Solar input freewheeling diode
+13,D4,1,Schottky Rectifier 3A 40V,SS34,ON Semiconductor,SS34,863-SS34,SMA,Buck converter bootstrap/freewheeling diode
+14,F1,1,40A MIDI/AMG Slow-Blow Fuse,0297040.WXNV,Littelfuse,0297040.WXNV,576-0297040WXNV,MIDI AMG,Main battery circuit protection fuse - 40A slow-blow
+15,J1,1,Anderson SB50 50A Powerpole Connector Black,SB50BK,Anderson Power Products,SB50BK,658-SB50BK,SB50,Battery terminal connection - 50A rated
+16,J2,1,Anderson SB120 120A Powerpole Connector Black,SB120BK,Anderson Power Products,SB120BK,658-SB120BK,SB120,Solar panel / external charger input - 120A rated
+17,J3,1,MiniFit Jr 8-pin Vertical Header 4.2mm,39-30-0080,Molex,39-30-0080,538-39-30-0080,MiniFit Jr 4.2mm,Regulated 5V and 12V output to LCU-100 and other boards
+18,L1,1,5.6µH 10A Power Inductor Shielded,HCMA0703-5R6-R,Bourns,HCMA0703-5R6-R,652-HCMA0703-5R6-R,7.3x6.8mm,Main buck converter output inductor - 5.6µH 10A rated
+19,C1-C40,40,100nF 0402 X5R 25V Bypass Capacitor,GRM155R61E104KA87D,Murata,GRM155R61E104KA87D,81-GRM155R61E104KA87D,0402,General bypass decoupling all ICs
+20,C41-C50,10,10µF 1210 50V X5R Capacitor,GRM32ER61H106KA12L,Murata,GRM32ER61H106KA12L,81-GRM32ER61H106KA12L,1210,Input and output bulk capacitors for buck converter - 50V rated
+21,C51-C60,10,22µF 1206 50V X5R Capacitor,GRM31CR61H226KE18L,Murata,GRM31CR61H226KE18L,81-GRM31CR61H226KE18L,1206,Battery charger input/output filter capacitors
+22,C61-C65,5,100µF 50V Electrolytic Capacitor,UVZ1H101MPD1TD,Nichicon,UVZ1H101MPD1TD,647-UVZ1H101MPD1TD,D10x16mm THT,Bulk energy storage on main power bus
+23,R1-R20,20,10kΩ 0402 1% 62.5mW Resistor,RC0402FR-0710KL,Yageo,RC0402FR-0710KL,603-RC0402FR-0710KL,0402,Pull-up/pull-down and voltage divider resistors
+24,R21-R30,10,100Ω 0402 1% 62.5mW Resistor,RC0402FR-07100RL,Yageo,RC0402FR-07100RL,603-RC0402FR-07100RL,0402,Current limit and gate drive resistors
+25,R31-R35,5,100mΩ 1% 1W Wirewound Kelvin Sense Resistor,WSBS2512R1000FEA,Vishay,WSBS2512R1000FEA,71-WSBS2512R1000FEA,2512 Kelvin,Current sensing shunt resistors for battery monitoring

@@ -1,0 +1,34 @@
+Item,Ref_Des,Qty,Description,Value,Manufacturer,MPN,Mouser_PN,Package,Notes
+1,U1,1,ARM Cortex-M7 MCU 480MHz 2MB Flash 1MB RAM,STM32H743ZIT6,STMicroelectronics,STM32H743ZIT6,511-STM32H743ZIT6,LQFP-144,Main application processor
+2,U2,1,ARM Cortex-M0+ Safety Supervisor MCU 128KB Flash,STM32G071RBT6,STMicroelectronics,STM32G071RBT6,511-STM32G071RBT6,LQFP-64,Independent safety supervisor - monitors watchdog/phase conflicts
+3,U3,1,FRAM 4Mbit SPI 3.3V,MB85RS4MT,Fujitsu,MB85RS4MT-G-JNERE1,865-MB85RS4MT-G-JNERE1,SOP-8,Non-volatile data log and event storage
+4,U4,1,RTC I2C battery-backed SRAM,MCP7940N-I/SN,Microchip,MCP7940N-I/SN,579-MCP7940N-I/SN,SOIC-8,Real-time clock with battery backup
+5,U5,1,CAN FD Transceiver 5Mbps 3.3V/5V,TCAN1042VDRQ1,Texas Instruments,TCAN1042VDRQ1,595-TCAN1042VDRQ1,SOIC-8,CAN Bus 1 - inter-board comms
+6,U6,1,CAN FD Transceiver 5Mbps 3.3V/5V,TCAN1042VDRQ1,Texas Instruments,TCAN1042VDRQ1,595-TCAN1042VDRQ1,SOIC-8,CAN Bus 2 - field device comms
+7,U7,1,RS-485/RS-422 Transceiver 10Mbps,MAX3485EESA+,Maxim Integrated,MAX3485EESA+,700-MAX3485EESA+T,SOIC-8,RS-485 field communications
+8,U8,1,USB 3.1 Gen1 SuperSpeed Re-driver/Hub,TUSB1310A,Texas Instruments,TUSB1310AZXEQ,595-TUSB1310AZXEQ,QFN-48,USB 3.1/2.0 service port interface
+9,U9,1,USB ESD Protection 5V Dual Rail,PRTR5V0U2X,Nexperia,PRTR5V0U2X215,771-PRTR5V0U2X215,SOT-363,ESD protection on USB D+/D- lines
+10,U10,1,5V 1A Ultra-Low Noise LDO Regulator,TPS7A4700RGWT,Texas Instruments,TPS7A4700RGWT,595-TPS7A4700RGWT,QFN-20,Low-noise 5V rail for analog and CAN supply
+11,U11,1,3.3V 1A LDO Regulator,AP2114HA-3.3TRG1,Diodes Inc,AP2114HA-3.3TRG1,621-AP2114HA-3.3TRG1,SOT-223,3.3V digital supply rail
+12,U12,1,"5V/±5V 1W Isolated DC-DC Converter",R05P05D/P,Recom,R05P05D/P,919-R05P05D/P,SIP-7,Isolated 5V supply for RS-485/CAN isolation
+13,U13,1,1A 60V Schottky Diode,STPS1L60A,STMicroelectronics,STPS1L60A,511-STPS1L60A,SOD-123,FRAM supply isolation diode
+14,Y1,1,8MHz Crystal 18pF ±30ppm,ABLS-8.000MHZ-B4Y,Abracon,ABLS-8.000MHZ-B4Y,815-ABLS-8.000MHZ-B4Y,HC-49/US,Main system clock for STM32H743
+15,Y2,1,32.768kHz Crystal 7pF ±20ppm,CM315C32768EZFT,Abracon,CM315C32768EZFT,815-CM315C32768EZFT,CM315,RTC clock source for MCP7940N
+16,J1,1,MiniFit Jr 8-pin Vertical Header 4.2mm,39-30-0080,Molex,39-30-0080,538-39-30-0080,MiniFit Jr 4.2mm,Power input from LPB-100 board
+17,J2,1,M12 5-pin A-coded Male Panel Mount Connector,1441838,Phoenix Contact,1441838,651-1441838,M12-5P,CAN/RS485 field connection to LSO-100
+18,J3,1,"40-pin Board-to-Board Connector 0.4mm Pitch","DF40C-40DP-0.4V(51)",Hirose,"DF40C-40DP-0.4V(51)",798-DF40C40DP04V51,0.4mm 40P B2B,Radio module interface connector
+19,J4,1,M.2 B-Key 75-pin Edge Connector,2199230-4,TE Connectivity,2199230-4,571-2199230-4,M.2 B-Key,LTE modem module socket
+20,J5,1,USB Type-C 16-pin SMT Receptacle,2171320001,Molex,2171320001,538-2171320001,USB-C 16P,Service/programming port
+21,J6,1,12-pin Screw Terminal Block 5.08mm Pitch,1727036,Phoenix Contact,1727036-12,651-1727036-12,Screw Terminal 5.08mm,"Field digital inputs (door switch, inhibit etc.)"
+22,J7,2,SMA PCB Edge Mount Female Connector,901-144-8RFX,Amphenol RF,901-144-8RFX,523-901-144-8RFX,SMA Edge,Antenna connection (qty 2 - diversity antennas)
+23,J8,1,10-pin 1.27mm SWD/JTAG Debug Header Dual Row,FTSH-105-01-L-DV,Samtec,FTSH-105-01-L-DV,200-FTSH10501LDV,1.27mm 2x5,SWD debug and programming interface
+24,BT1,1,ML2032 Coin Cell Holder SMT,500,Keystone Electronics,500,534-500,SMT Coin Cell,RTC battery backup - ML2032 rechargeable lithium
+25,"C1-C100",100,100nF 0402 X5R 25V Bypass Capacitor,GRM155R61E104KA87D,Murata,GRM155R61E104KA87D,81-GRM155R61E104KA87D,0402,General bypass decoupling (100 pieces)
+26,"C101-C120",20,10µF 0805 X5R 25V Bulk Bypass Capacitor,GRM21BR61E106KA73L,Murata,GRM21BR61E106KA73L,81-GRM21BR61E106KA73L,0805,Bulk supply bypass capacitors (20 pieces)
+27,"C121-C150",30,1µF 0402 X5R 16V Capacitor,GRM155R61C105KA12D,Murata,GRM155R61C105KA12D,81-GRM155R61C105KA12D,0402,LDO output/input bypass (30 pieces)
+28,"R1-R50",50,10kΩ 0402 1% 62.5mW Resistor,RC0402FR-0710KL,Yageo,RC0402FR-0710KL,603-RC0402FR-0710KL,0402,Pull-up/pull-down resistors (50 pieces)
+29,"R51-R80",30,100Ω 0402 1% 62.5mW Resistor,RC0402FR-07100RL,Yageo,RC0402FR-07100RL,603-RC0402FR-07100RL,0402,Series termination resistors (30 pieces)
+30,"R81-R100",20,4.7kΩ 0402 1% 62.5mW Resistor,RC0402FR-074K7L,Yageo,RC0402FR-074K7L,603-RC0402FR-074K7L,0402,I2C pull-up resistors (20 pieces)
+31,"D1-D10",10,"5.0V 400W Unidirectional TVS Diode",SMAJ5.0A-E3/61,Vishay,SMAJ5.0A-E3/61,625-SMAJ5.0A-E3/61,SMA,CAN bus line ESD/transient protection (10 pieces)
+32,"L1-L2",4,Common Mode Choke 90Ω@100MHz 0805,SRF2012-900Y,Bourns,SRF2012-900Y,652-SRF2012-900Y,0805,CAN bus common mode filtering (2 pairs = 4 devices)
+33,"L3-L12",10,Ferrite Bead 220Ω@100MHz 1A 0805,BLM21PG221SN1D,Murata,BLM21PG221SN1D,81-BLM21PG221SN1D,0805,Power rail EMI filtering (10 pieces)
