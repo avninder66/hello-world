@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# SQLite database (generated at runtime)
+*.db
+
+# Claude Code
+.claude/

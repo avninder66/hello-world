@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Stock Items{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex justify-content-between align-items-end">
+  <div>
+    <h2 class="mb-0"><i class="bi bi-box-seam me-2"></i>Stock Items</h2>
+    <small class="text-muted">All inventory items</small>
+  </div>
+  <a href="{{ url_for('item_new') }}" class="btn btn-primary">
+    <i class="bi bi-plus-lg me-1"></i>New Item
+  </a>
+</div>
+
+<div class="card">
+  <div class="card-body p-0">
+    {% if items %}
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Unit</th>
+            <th class="text-end">Current Stock</th>
+            <th class="text-end">Threshold</th>
+            <th class="text-center">Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td class="fw-semibold">{{ item.name }}</td>
+            <td class="text-muted small">{{ item.description or '—' }}</td>
+            <td>{{ item.unit }}</td>
+            <td class="text-end fw-bold {% if item.is_low %}text-danger{% endif %}">
+              {{ item.current_stock }}
+            </td>
+            <td class="text-end text-muted">{{ item.low_stock_threshold }}</td>
+            <td class="text-center">
+              {% if item.is_low %}
+                <span class="badge bg-danger"><i class="bi bi-exclamation-triangle me-1"></i>Low Stock</span>
+              {% else %}
+                <span class="badge bg-success"><i class="bi bi-check-lg me-1"></i>OK</span>
+              {% endif %}
+            </td>
+            <td class="text-end">
+              <a href="{{ url_for('item_detail', item_id=item.id) }}" class="btn btn-sm btn-outline-secondary">
+                <i class="bi bi-card-list me-1"></i>View Ledger
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="text-center py-5 text-muted">
+      <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+      No stock items yet.
+      <a href="{{ url_for('item_new') }}">Add your first item</a>.
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

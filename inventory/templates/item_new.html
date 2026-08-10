@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}New Stock Item{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2 class="mb-0"><i class="bi bi-plus-circle me-2"></i>New Stock Item</h2>
+  <small class="text-muted">Add a new item to the inventory</small>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-header" style="background-color: var(--tm-dark); color: #fff;">
+        Item Details
+      </div>
+      <div class="card-body">
+        <form method="POST" action="{{ url_for('item_new') }}">
+          <div class="mb-3">
+            <label for="name" class="form-label fw-semibold">Item Name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name"
+                   placeholder="e.g. Traffic Cones" required autofocus>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label fw-semibold">Description</label>
+            <input type="text" class="form-control" id="description" name="description"
+                   placeholder="Optional description">
+          </div>
+
+          <div class="row g-3 mb-3">
+            <div class="col-sm-6">
+              <label for="unit" class="form-label fw-semibold">Unit of Measure <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="unit" name="unit"
+                     placeholder="e.g. units, metres, sets" value="units" required>
+              <div class="form-text">How this item is counted.</div>
+            </div>
+            <div class="col-sm-6">
+              <label for="low_stock_threshold" class="form-label fw-semibold">Low Stock Threshold <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" id="low_stock_threshold"
+                     name="low_stock_threshold" value="10" min="0" required>
+              <div class="form-text">Alert when stock falls to or below this level.</div>
+            </div>
+          </div>
+
+          <hr class="my-3">
+          <h6 class="text-muted mb-3"><i class="bi bi-journal-plus me-1"></i>Opening Stock</h6>
+
+          <div class="mb-3">
+            <label for="opening_stock" class="form-label fw-semibold">Opening Stock Quantity</label>
+            <input type="number" class="form-control" id="opening_stock"
+                   name="opening_stock" value="0" min="0">
+            <div class="form-text">Leave as 0 if you'll add stock later.</div>
+          </div>
+
+          <div class="mb-4">
+            <label for="notes" class="form-label fw-semibold">Opening Stock Notes</label>
+            <input type="text" class="form-control" id="notes" name="notes"
+                   placeholder="e.g. Initial stock count — June 2024">
+          </div>
+
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+              <i class="bi bi-check-lg me-1"></i>Create Item
+            </button>
+            <a href="{{ url_for('items_list') }}" class="btn btn-outline-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
