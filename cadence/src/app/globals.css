@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f6f6f3;
+  --surface: #ffffff;
+  --surface-2: #f0efea;
+  --border: #e2e0d8;
+  --text: #1c1b18;
+  --muted: #6b6960;
+  --accent: #3b5bdb;
+  --accent-fg: #ffffff;
+  --accent-soft: #e7ecfd;
+  --ok: #2b8a3e;
+  --ok-soft: #e3f4e6;
+  --warn: #b35c00;
+  --warn-soft: #fdf0dc;
+  --bad: #c92a2a;
+  --bad-soft: #fde4e4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131312;
+    --surface: #1c1c1a;
+    --surface-2: #252522;
+    --border: #34332f;
+    --text: #ecebe6;
+    --muted: #9c9a91;
+    --accent: #7d95f5;
+    --accent-fg: #0e1430;
+    --accent-soft: #1f2747;
+    --ok: #69db7c;
+    --ok-soft: #17301c;
+    --warn: #ffb35c;
+    --warn-soft: #3a2a12;
+    --bad: #ff8787;
+    --bad-soft: #3b1a1a;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+@layer components {
+  .card { @apply rounded-xl border border-line bg-surface; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-surface px-3.5 py-2 text-sm font-medium
+      text-fg transition hover:bg-surface-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary { @apply border-transparent bg-accent text-accent-fg hover:bg-accent hover:opacity-90; }
+  .btn-danger { @apply text-bad; }
+  .btn-sm { @apply px-2.5 py-1 text-xs; }
+  .input {
+    @apply w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-fg placeholder:text-muted
+      focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25;
+  }
+  .label { @apply mb-1 block text-sm font-medium; }
+  .hint { @apply text-xs text-muted; }
+  .h1 { @apply text-2xl font-semibold tracking-tight; }
+  .h2 { @apply text-base font-semibold; }
+}
