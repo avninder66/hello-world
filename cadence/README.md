@@ -83,6 +83,10 @@ curl -H "Authorization: Bearer $CRON_SECRET" http://localhost:3000/api/cron/publ
 
 ### 5. Deploy
 
+**GoDaddy / cPanel:** see [DEPLOY-CPANEL.md](DEPLOY-CPANEL.md). `npm run package:cpanel` builds a ready-to-upload zip.
+
+**Vercel:**
+
 Deploy to Vercel (set the same environment variables). Due posts are published by calling `/api/cron/publish` every minute:
 
 - **Vercel Pro**: `vercel.json` already schedules it (Vercel sends `CRON_SECRET` automatically).

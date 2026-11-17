@@ -10,9 +10,9 @@ export function appUrl(): string {
 }
 
 export function supabaseUrl() {
-  return requireEnv("NEXT_PUBLIC_SUPABASE_URL");
+  return requireEnv("SUPABASE_URL");
 }
 
 export function supabasePublishableKey() {
-  return requireEnv("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY");
+  return requireEnv("SUPABASE_PUBLISHABLE_KEY");
 }

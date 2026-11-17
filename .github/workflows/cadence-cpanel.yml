@@ -1,0 +1,30 @@
+name: Cadence – build cPanel package
+
+on:
+  push:
+    paths: ["cadence/**", ".github/workflows/cadence-cpanel.yml"]
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cadence
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: cadence/package-lock.json
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm test
+      - run: npm run package:cpanel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cadence-cpanel
+          path: cadence/dist/cadence-cpanel.zip
+          retention-days: 30
