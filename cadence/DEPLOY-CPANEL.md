@@ -50,9 +50,11 @@ The app will take over **yourdomain.com**, so anything there now will stop showi
 1. Get `cadence-cpanel.zip`. Either:
    - download the latest from GitHub → **Actions** → **Cadence – build cPanel package** → latest run → **Artifacts**. GitHub wraps it in another zip, so unzip that once on your computer.
    - or build it yourself: `cd cadence && npm install && npm run package:cpanel` (creates `dist/cadence-cpanel.zip`).
-2. cPanel → **File Manager** → go to your **home folder** (the top level, *not* `public_html`).
-3. **Upload** `cadence-cpanel.zip`, then right-click it → **Extract**. You'll get a folder called `cadence` containing `app.js`, `package.json` and `server/`.
+2. cPanel → **File Manager** → click **Home** so you're in `/home/<your-user>`. **Not** `public_html` or the domain's folder (e.g. `public_html/yourdomain.com`): everything there is public.
+3. **Upload** `cadence-cpanel.zip`, then right-click it → **Extract**, with the destination set to your home folder only. You'll get a folder called `cadence` containing `app.js` (about 1 KB), `package.json` and `server/`.
 4. Delete the zip.
+
+> Do Step 3 **before** Step 4. When cPanel creates a Node.js app in an empty folder it puts a sample `app.js` there that just shows "It works!". If that happens, replace its contents with `deploy/cpanel/app.js` from this repo (or the `app.js` inside the zip) and restart.
 
 ---
 
@@ -137,7 +139,12 @@ If an update includes a new file in `supabase/migrations/`, run it in the Supaba
 | Posts stay *Scheduled* past their time | The publishing timer isn't running: redo Step 5. You can trigger it by hand with the curl command above. |
 | App is slow to load the first time after a while | Normal on shared hosting: the app sleeps when idle and takes a few seconds to wake. |
 | Out of memory / app keeps restarting | Shared plans have small memory limits. Ask GoDaddy about the plan's limit, or move to a VPS. |
-| `public_html/.htaccess` has Passenger lines | Those are added by cPanel to route your domain to the app. Leave them. |
+| Site shows "It works! NodeJS …" | The app is running cPanel's sample `app.js`. Replace the contents of `app.js` in the application root with Cadence's (see Step 3) and Restart. |
+| 403 Forbidden on the whole site | The domain isn't linked to the app any more (e.g. after deleting/recreating it). Edit the app → Save → Restart, or recreate it. |
+| "No such file or directory: …/.htaccess" when stopping/deleting the app | Create an empty `.htaccess` in the domain's folder, then retry. |
+| "Specified directory already used by …" when creating the app | An app is still registered on that folder: edit it instead, or rename the folder and create the app with the new name. |
+| Publishing calls get `{"error":"unauthorised"}` | `CRON_SECRET` in cPanel and the `cadence_cron_secret` stored in Supabase differ. Make them identical and Restart. |
+| The domain's `.htaccess` has Passenger lines | Those are added by cPanel to route your domain to the app. Leave them. |
 
 ---
 
