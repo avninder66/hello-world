@@ -1,6 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { supabasePublishableKey, supabaseUrl } from "@/lib/env";
+import { appUrl, supabasePublishableKey, supabaseUrl } from "@/lib/env";
 
 /** Keeps the Supabase auth session fresh and sends signed-out users to /login. */
 export async function proxy(request: NextRequest) {
@@ -23,10 +23,9 @@ export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isPublic = path === "/login" || path.startsWith("/auth/");
   if (!data.user && !isPublic) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/login";
-    url.search = "";
-    return NextResponse.redirect(url);
+    // APP_URL, not the request URL: behind cPanel/Passenger the request carries
+    // the server's internal hostname.
+    return NextResponse.redirect(`${appUrl()}/login`);
   }
   return response;
 }

@@ -1,7 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { appUrl } from "@/lib/env";
 import { userClient } from "@/lib/supabase/server";
 
-/** Exchanges the code from a Supabase magic link / OAuth sign-in for a session. */
+/** Exchanges the code from a Supabase email link / sign-in for a session. */
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
   const next = request.nextUrl.searchParams.get("next") ?? "/";
@@ -9,5 +10,8 @@ export async function GET(request: NextRequest) {
     const supabase = await userClient();
     await supabase.auth.exchangeCodeForSession(code);
   }
-  return NextResponse.redirect(new URL(next.startsWith("/") ? next : "/", request.url));
+  // Redirect using APP_URL: behind cPanel/Passenger the request URL carries the
+  // server's internal hostname, not the public domain. Only allow local paths.
+  const path = next.startsWith("/") && !next.startsWith("//") ? next : "/";
+  return NextResponse.redirect(`${appUrl()}${path}`);
 }
